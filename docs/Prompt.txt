@@ -1,0 +1,644 @@
+# Building a Jewelry-Only AI Image Generation App
+
+## Core Principle
+
+Jewelry image generation is not the same as general fashion generation.
+
+Users care about:
+
+* Material realism
+* Gemstone accuracy
+* Reflections and lighting
+* Fine detail preservation
+* Luxury presentation
+* Product consistency
+* Manufacturing plausibility
+* Brand aesthetics
+
+Your entire system prompt architecture should optimize for:
+
+1. Precision
+2. Controlled outputs
+3. High visual consistency
+4. Accurate jewelry physics/materials
+5. Luxury-grade photography aesthetics
+
+---
+
+# 1. Things You Must Keep in Mind
+
+## A. Jewelry Is Extremely Sensitive to Detail
+
+Small mistakes destroy realism instantly.
+
+Common failures:
+
+* Melted prongs
+* Asymmetrical earrings
+* Wrong gemstone cuts
+* Impossible reflections
+* Bent chains
+* Uneven pavé stones
+* Broken clasps
+* Warped rings
+* Inconsistent metal texture
+* Floating gems
+* Finger anatomy issues in hand shots
+
+Your prompts must explicitly constrain these.
+
+---
+
+## B. Consistency Is More Important Than Creativity
+
+For jewelry commerce:
+
+* consistency > artistic freedom
+
+Your app should produce:
+
+* repeatable compositions
+* predictable lighting
+* stable product geometry
+* clean backgrounds
+* matching style across generations
+
+Avoid:
+
+* random artistic hallucinations
+* dramatic fantasy styling
+* uncontrolled accessories
+* chaotic backgrounds
+
+---
+
+## C. Material Accuracy Is Critical
+
+You must explicitly describe:
+
+### Metals
+
+* 18k yellow gold
+* 14k rose gold
+* platinum
+* sterling silver
+* brushed gold
+* polished white gold
+
+### Gemstones
+
+* VVS diamond
+* emerald cut diamond
+* oval sapphire
+* pear ruby
+* moissanite
+* lab-grown diamond
+
+### Surface Details
+
+* high polish
+* mirror finish
+* satin finish
+* brushed texture
+* pavé setting
+* bezel setting
+* prong setting
+
+Without explicit specification, models hallucinate.
+
+---
+
+## D. Lighting Is Everything
+
+Jewelry looks premium because of lighting.
+
+Best lighting styles:
+
+* softbox luxury lighting
+* studio product lighting
+* diffused macro lighting
+* cinematic luxury lighting
+* high-end ecommerce photography
+* black reflective luxury setup
+* white seamless studio lighting
+
+Avoid:
+
+* harsh sunlight
+* flat lighting
+* cartoonish HDR
+* overexposed diamonds
+
+---
+
+## E. Camera Language Matters
+
+Your prompts should include:
+
+* macro photography
+* 85mm lens
+* 100mm macro lens
+* shallow depth of field
+* focus stacking
+* ultra high detail
+* commercial jewelry photography
+
+This massively improves output quality.
+
+---
+
+# 2. Recommended App Architecture
+
+## Separate Prompt Layers
+
+Do NOT use one giant prompt.
+
+Use:
+
+### Layer 1 — System Prompt
+
+Controls:
+
+* safety
+* style consistency
+* realism
+* restrictions
+* jewelry-specific rules
+
+### Layer 2 — Product Prompt
+
+User input:
+
+* ring type
+* gemstone
+* metal
+* style
+* engraving
+
+### Layer 3 — Photography Prompt
+
+Controls:
+
+* lighting
+* camera
+* angle
+* background
+* reflections
+
+### Layer 4 — Negative Prompt
+
+Blocks:
+
+* distorted jewelry
+* extra gemstones
+* broken geometry
+* blurry details
+* low quality
+
+This architecture gives far better control.
+
+---
+
+# 3. Ideal Jewelry System Prompt
+
+## Example Master System Prompt
+
+```text
+You are a luxury jewelry image generation assistant specialized exclusively in high-end jewelry photography and product visualization.
+
+Always generate photorealistic, commercially viable jewelry imagery with accurate gemstone physics, premium metal reflections, realistic proportions, and luxury studio lighting.
+
+Prioritize:
+- jewelry realism
+- gemstone clarity
+- symmetry
+- precise metal detailing
+- manufacturing plausibility
+- luxury product presentation
+- clean composition
+- high-end ecommerce aesthetics
+
+Jewelry must always appear:
+- physically manufacturable
+- structurally correct
+- symmetrical
+- highly detailed
+- premium quality
+
+Preserve:
+- gemstone cuts
+- prong integrity
+- chain geometry
+- clasp realism
+- pavé alignment
+- reflective accuracy
+
+Avoid:
+- warped geometry
+- melted metal
+- asymmetry
+- unrealistic gemstones
+- blurry details
+- extra limbs or fingers in hand shots
+- fantasy artifacts
+- cartoon styles
+- over-stylization
+- broken reflections
+- distorted jewelry structures
+
+Preferred photography style:
+- luxury studio photography
+- macro lens photography
+- premium ecommerce product photography
+- shallow depth of field
+- controlled softbox lighting
+- ultra high detail
+- realistic shadows
+- clean luxury backgrounds
+
+If human models are included:
+- maintain anatomically correct hands
+- realistic skin texture
+- elegant luxury fashion styling
+- focus remains on the jewelry product
+
+Always output visually clean, commercially usable luxury jewelry imagery.
+```
+
+---
+
+# 4. Product Prompt Structure
+
+## Good Structure
+
+```text
+[Jewelry Type]
+[Metal Type]
+[Gemstone Type]
+[Gemstone Cut]
+[Setting Style]
+[Luxury Style]
+[Photography Style]
+[Background]
+```
+
+---
+
+## Example
+
+```text
+Luxury engagement ring, 18k white gold, 2 carat oval diamond, hidden halo setting, micro pavé band, ultra realistic gemstone reflections, premium macro jewelry photography, black reflective luxury background, softbox lighting, shallow depth of field, commercial ecommerce photography, highly detailed.
+```
+
+---
+
+# 5. Negative Prompt Examples
+
+## Universal Jewelry Negative Prompt
+
+```text
+low quality, blurry, distorted jewelry, melted metal, asymmetrical gemstones, extra gemstones, broken prongs, unrealistic reflections, warped ring, bad anatomy, extra fingers, floating diamonds, poor lighting, cartoon, CGI look, overexposed highlights, duplicate jewelry, messy background, low detail, deformed chain, incorrect gemstone cuts
+```
+
+---
+
+# 6. Best Generation Modes for Jewelry
+
+## A. Product Catalog Mode
+
+Use for:
+
+* ecommerce
+* Shopify
+* Amazon
+* product pages
+
+Characteristics:
+
+* centered composition
+* clean background
+* white background
+* accurate lighting
+* minimal shadows
+
+---
+
+## B. Luxury Campaign Mode
+
+Use for:
+
+* ads
+* banners
+* hero images
+* social media
+
+Characteristics:
+
+* cinematic lighting
+* dramatic reflections
+* luxury textures
+* model shots
+* premium atmosphere
+
+---
+
+## C. Macro Detail Mode
+
+Use for:
+
+* diamond detail
+* craftsmanship
+* gemstone closeups
+
+Characteristics:
+
+* extreme detail
+* focus stacking
+* ultra macro lens
+* shallow DOF
+
+---
+
+# 7. Important Technical Features to Build
+
+## A. Structured Inputs
+
+Instead of free text only, use:
+
+Dropdowns:
+
+* jewelry type
+* metal type
+* gemstone type
+* gemstone cut
+* setting type
+* background style
+* lighting style
+
+This improves prompt quality dramatically.
+
+---
+
+## B. Preset Styles
+
+Create presets:
+
+### Examples
+
+* Tiffany-style luxury
+* Cartier-style minimal
+* Bvlgari-inspired bold
+* High-fashion editorial
+* Minimal ecommerce
+* Vintage antique
+* Modern bridal
+
+Users love presets.
+
+---
+
+## C. Consistency Tokens
+
+For consistent collections:
+
+Use hidden descriptors like:
+
+```text
+consistent luxury jewelry photography style
+matching studio lighting
+uniform reflections
+catalog consistency
+```
+
+Very important for multi-image collections.
+
+---
+
+## D. Image-to-Image Refinement
+
+Critical for jewelry.
+
+Workflow:
+
+1. Generate base concept
+2. Refine details
+3. Enhance gemstone realism
+4. Upscale
+5. Final polish pass
+
+Jewelry benefits massively from iterative refinement.
+
+---
+
+# 8. Best Prompt Enhancers for Jewelry
+
+These phrases work extremely well:
+
+## Realism Enhancers
+
+```text
+ultra realistic
+commercial jewelry photography
+luxury product photography
+macro photography
+hyper detailed
+premium reflections
+physically accurate materials
+high-end studio lighting
+```
+
+## Diamond Enhancers
+
+```text
+accurate light dispersion
+realistic diamond fire
+precise gemstone refraction
+brilliant cut reflections
+```
+
+## Luxury Enhancers
+
+```text
+premium luxury aesthetic
+high fashion jewelry campaign
+exclusive boutique presentation
+fine jewelry advertising style
+```
+
+---
+
+# 9. Common Mistakes in Jewelry AI Apps
+
+## Mistake 1 — Overly Generic Prompts
+
+Bad:
+
+```text
+beautiful gold ring
+```
+
+Good:
+
+```text
+18k yellow gold solitaire engagement ring with 2 carat emerald-cut diamond, cathedral setting, premium macro jewelry photography, luxury softbox lighting, ultra realistic reflections
+```
+
+---
+
+## Mistake 2 — Ignoring Negative Prompts
+
+Negative prompts are mandatory for jewelry.
+
+---
+
+## Mistake 3 — No Style Locking
+
+Without style consistency:
+
+* every image looks different
+* collections fail
+* ecommerce looks unprofessional
+
+---
+
+## Mistake 4 — Too Much Creativity
+
+Jewelry customers want:
+
+* believable products
+* luxury realism
+* trust
+
+Not surreal AI art.
+
+---
+
+# 10. Suggested Prompt Pipeline
+
+## Final Prompt Formula
+
+```text
+[System Prompt]
++
+[Brand Style Preset]
++
+[Jewelry Description]
++
+[Photography Setup]
++
+[Material Details]
++
+[Composition Rules]
++
+[Negative Prompt]
+```
+
+---
+
+# 11. Example Production Prompt
+
+```text
+Luxury diamond engagement ring, 18k white gold, 2 carat oval brilliant diamond, hidden halo, pavé diamond band, physically accurate gemstone refraction, premium mirror-polished metal, ultra realistic macro photography, luxury softbox lighting, black reflective acrylic surface, shallow depth of field, commercial jewelry campaign photography, hyper detailed, realistic shadows, elegant luxury aesthetic.
+
+Negative prompt: blurry, low quality, melted metal, distorted ring, asymmetrical diamonds, fake reflections, extra stones, poor anatomy, duplicate jewelry, unrealistic lighting, cartoon, CGI look.
+```
+
+---
+
+# 12. Recommendation for Nano Banana Models
+
+Since you mentioned Nano Banana Pro / 2:
+
+## Use a Strong Constraint Style
+
+These models usually respond better when:
+
+* prompts are structured
+* details are explicit
+* photography terms are included
+* negative prompts are strong
+* materials are clearly defined
+
+Avoid vague prompts.
+
+---
+
+## Best Prompt Order for These Models
+
+Recommended order:
+
+```text
+Subject
+→ Materials
+→ Gemstones
+→ Craftsmanship
+→ Photography Style
+→ Lighting
+→ Background
+→ Quality Enhancers
+→ Negative Prompt
+```
+
+---
+
+# 13. Advanced Features Worth Adding Later
+
+## A. Ring-on-Hand Realism Module
+
+Special handling for:
+
+* fingers
+* skin texture
+* proportions
+* nail styling
+
+Very difficult area.
+
+---
+
+## B. CAD-Aware Prompting
+
+Later you can support:
+
+* manufacturable geometry
+* stone seat accuracy
+* CAD-inspired structures
+
+Huge advantage.
+
+---
+
+## C. Brand Fine-Tuning
+
+Eventually fine-tune on:
+
+* your own catalog
+* luxury references
+* consistent lighting setups
+
+This creates major differentiation.
+
+---
+
+# 14. Final Recommendation
+
+For jewelry AI generation, focus on:
+
+1. Controlled prompts
+2. Material realism
+3. Lighting quality
+4. Structured inputs
+5. Strong negative prompts
+6. Consistency systems
+7. Refinement workflows
+8. Luxury photography language
+
+The biggest competitive advantage is not the model.
+
+It is:
+
+* prompt engineering
+* consistency
+* realism control
+* luxury aesthetics
+* workflow quality

@@ -1,0 +1,89 @@
+{
+  "workflow": "CATALOG_IMAGE",
+  "workflow_label": "Catalog Image",
+  "description": "Produces pristine, studio-grade commercial product photography of jewelry against clean, luxury neutral backgrounds. Intended for e-commerce listings, catalog shoots, and brand marketing assets.",
+
+  "master_prompt": {
+    "system_role": "Act as a world-class commercial jewelry photographer with over 20 years of high-end editorial experience. You specialize in pristine macro catalog photography for luxury jewelry brands. Your images are featured in Vogue, Harper's Bazaar, and Tiffany & Co. catalogs. Your mission is to produce a photograph that looks physically real, hyper-detailed, and commercially polished — not rendered or AI-generated. Every image must feel like it was captured inside a professional luxury product studio under controlled lighting.",
+
+    "camera_settings": "Canon EOS R5 full-frame mirrorless, 100mm f/2.8L IS USM Macro lens. Aperture f/11 for total edge-to-edge sharpness and maximum depth of field. ISO 100 for zero grain. 1/125s shutter speed with studio strobe synchronization. Tripod-locked for absolute stability. RAW capture, color-calibrated to D65 neutral daylight. Post-processed for maximum micro-detail retention and true-to-life color accuracy.",
+
+    "environment": "The jewelry piece rests on a premium matte cream-white velvet surface with an ultra-fine micro-texture. The surface curves gently upward in the background (infinity sweep), seamlessly transitioning to a soft warm-white studio backdrop. The surrounding environment is clean, minimalist, and impeccably professional — no objects, no distracting textures, no noise. The ambient color temperature is 5500K warm-neutral, giving the scene a high-end, inviting warmth without introducing color cast on the metal or gemstones.",
+
+    "lighting_and_physics": "Primary light: a large 120cm Profoto octabank softbox positioned overhead-front at a 45-degree angle, producing soft, wrapping light that gently fills the metal's contours. Fill light: a large reflector panel placed opposite the key light to eliminate harsh shadows while maintaining natural depth. A subtle hair-light placed above-behind creates a delicate specular rim highlight on the top of the band or setting, giving it dimensionality and luxury depth. All shadows are soft, natural, and physically accurate — especially the contact shadow where the jewelry touches the velvet surface. Metal reflections are realistic: yellow gold shows warm, rich honey-tone reflections; white gold and platinum show cool, crisp steel-blue reflections; rose gold shows warm blush-rose reflections. Gemstones exhibit authentic internal refractions — diamonds fire with spectral dispersions, colored stones glow with the depth of their natural hue.",
+
+    "preservation_lock": "ABSOLUTE MANDATE — You must preserve the exact physical integrity of the jewelry piece with zero deviation: (1) Do NOT alter the geometry, prong placement, or setting style of the piece. (2) Do NOT smooth, round, or warp the band shape. (3) Do NOT change the gemstone cut, facet pattern, or color. (4) Do NOT add gemstones, remove gemstones, or shift their positions. (5) Do NOT over-polish or artificially smooth metal surfaces — preserve realistic grain, brushing, or hammering textures as they appear. (6) The scale of the jewelry must remain accurate relative to the scene. (7) The piece must appear physically grounded — never floating.",
+
+    "negative_prompt": "3D render, CGI, digital illustration, cartoon, anime, overly stylized, plastic sheen, artificial neon glow, overexposed highlights, lens flare, vignetting, chromatic aberration, motion blur, fake bokeh, cluttered background, colored gel lighting, unnatural shadows, floating jewelry, missing contact shadow, warped prongs, melted metal, distorted facets, asymmetrical gemstones, wrong gemstone color, duplicate stones, extra prongs, deformed band, watermark, text overlay, frame border, low resolution, grainy, noisy, over-sharpened halo artifacts."
+  },
+
+  "child_prompts": {
+    "ring": {
+      "jewelry_type": "Ring",
+      "subject_description": "A luxury ring is positioned upright and centered on the velvet surface, resting on its band with the top face (center stone and setting) angled 15 degrees toward camera for maximum gemstone visibility. The band forms a perfect circular arc visible from the side, showcasing its profile and width. The center stone is precisely in-focus, displaying clear internal depth and refraction. Contact shadow beneath the band is dark, soft-edged, and physically accurate — proving the ring is resting naturally on the surface, not floating.",
+      "composition_notes": "Ring centered in frame. Slight downward camera angle (15–20 degrees above horizon) to show top face of the setting while still revealing the band profile. Band arc visible on both sides of the setting for symmetrical luxury presentation."
+    },
+    "necklace": {
+      "jewelry_type": "Necklace",
+      "subject_description": "A luxury necklace is arranged in a graceful, open U-shape drape on the velvet surface, with the pendant or central motif positioned at the bottom-center of the composition. The chain flows naturally outward from the pendant in two elegant curves, neither too tight nor fully spread — capturing the natural weight and physics of fine metal chain. The pendant face is parallel to the camera sensor, displaying full frontal clarity of its design, gemstones, and metalwork. Every chain link catches soft studio light individually, revealing metallic craftsmanship.",
+      "composition_notes": "Pendant centered in frame bottom-third region. Camera positioned directly above (overhead shot), angled 15 degrees forward. Full chain visible in one continuous elegant sweep. No chain links overlapping unnaturally."
+    },
+    "bangles": {
+      "jewelry_type": "Bangles",
+      "subject_description": "A set of luxury rigid bangles is arranged in a stacked column or fanned semi-circle on the velvet surface. When stacked, the bangles form a neat tower showing varied inner surface textures and outer design details. When fanned, each bangle is angled outward from a central anchor point like a peacock display — each bangle clearly distinct, separated by 5–8mm gaps. The studio light plays across every outer edge, highlighting engravings, stone paving, and metalwork details simultaneously.",
+      "composition_notes": "Side-profile or 45-degree angled view to show bangle height/thickness and stack arrangement. Camera at slight downward angle. All bangles equally lit, none in complete shadow."
+    },
+    "bracelet": {
+      "jewelry_type": "Bracelet",
+      "subject_description": "A luxury flexible bracelet is laid flat or resting in a natural open-curve shape on the velvet surface, as if it has been gently placed and allowed to settle into its own weight. The clasp is positioned at one end visible in-frame, the links or chain form a smooth arc across the velvet. Each link or station stone catches individual light points, creating a linear progression of sparkle across the frame. The bracelet has a natural, organic feel — not rigidly straight, not forcibly curved.",
+      "composition_notes": "Horizontal composition, bracelet arc following the horizontal axis. Overhead-forward camera angle (30 degrees downward) to capture the full face of the bracelet simultaneously. Clasp detail visible at one terminus."
+    },
+    "earrings_studs": {
+      "jewelry_type": "Earrings (Studs)",
+      "subject_description": "A matched pair of luxury stud earrings is placed side-by-side on the velvet surface, precisely parallel to each other with a gap of 2–3cm between them. Both earrings face the camera directly (front-face parallel to lens), so each stone's table facet reflects clean studio light back into the lens. The pair is perfectly matched in this image — identical angle, identical lighting, identical focus depth. Individual stone facets are sharply resolved — the precision of the cut is visible as geometry inside the stone.",
+      "composition_notes": "Both studs centered symmetrically in frame. Camera directly front-facing, slight 10-degree downward tilt. Both earrings in equal, matching focus and light. Small, natural contact shadow beneath each post."
+    },
+    "earrings_drops": {
+      "jewelry_type": "Earrings (Drops)",
+      "subject_description": "A matched pair of luxury drop earrings is displayed hanging vertically in a natural gravity-suspended arrangement — mounted on an acrylic invisible stand or laid flat on velvet in a vertical composition. When hanging, the full length of both earrings is visible from hook to terminal pendant, displaying each articulated link, stone setting, and dangle element in natural suspension. When laid flat, both earrings are placed symmetrically side-by-side in perfect vertical orientation, imitating how they would hang when worn.",
+      "composition_notes": "Vertical portrait composition. Both earrings parallel, equal height, symmetric positioning. Full length of each earring visible from top hook to bottom terminal stone."
+    },
+    "earrings_hoops": {
+      "jewelry_type": "Earrings (Hoops)",
+      "subject_description": "A matched pair of luxury hoop earrings is arranged face-forward, showing the full circular or oval silhouette of each hoop. One hoop stands upright (supported naturally or invisible stand), showing its complete face — the diamond paving, metalwork, and interior arc in full view. The second hoop is angled 20 degrees to show depth and thickness. Both hoops reflect studio light uniformly across their outer paved surfaces, producing a continuous ring of sparkle.",
+      "composition_notes": "One hoop face-forward, one hoop at slight angle for dimensional context. Symmetric side-by-side placement. Full circular silhouette visible for dominant hoop."
+    },
+    "pendant": {
+      "jewelry_type": "Pendant",
+      "subject_description": "A luxury pendant is displayed as the hero element — pendant face-forward parallel to the camera sensor, either hung from a short section of chain on an invisible stand or laid flat on velvet. The pendant motif (heart, geometric shape, religious symbol, stone solitaire, etc.) is centered perfectly in frame with the chain bail visible at the top. Studio light falls precisely on the pendant face, revealing all engraving, stone settings, and metalwork detail at maximum clarity. The chain (if present) is secondary — elegant but not dominant.",
+      "composition_notes": "Pendant centered as primary subject. Chain (if shown) forms a short inverted-V shape above the pendant. Camera straight-on, slight 5-degree downward tilt. Background clean gradient."
+    },
+    "watch": {
+      "jewelry_type": "Watch",
+      "subject_description": "A luxury timepiece is positioned at a 45-degree angle to the camera — crown side facing right — resting on the velvet surface or elevated slightly on a watch stand. The dial face is visible and fully legible, showing hands, indices, and complications in perfect clarity. The case, bezel, and bracelet all catch individual light facets. The bracelet or strap forms a natural C-shape arc extending forward from the case. Time is set to 10:10 — the classic luxury watch marketing position. Reflections on the crystal are minimal, controlled, and add dimensionality.",
+      "composition_notes": "45-degree case angle, dial fully visible. Camera at same height as dial center, slight upward tilt for commanding presence. Full bracelet arc visible in composition."
+    },
+    "brooch": {
+      "jewelry_type": "Brooch",
+      "subject_description": "A luxury decorative brooch is placed flat on the velvet surface, face-up and directly parallel to the camera. The complex motif — floral arrangement, animal figure, geometric starburst, or abstract design — is fully visible in its entirety. Studio light falls cleanly across all elements of the brooch: each stone, each petal, each arm of the design catches individual light points producing a complex, multi-focal sparkle pattern. The overall composition reveals the full artistic scope and craftsmanship of the brooch design.",
+      "composition_notes": "Overhead-leaning camera position (bird's eye, approximately 70-degree downward tilt). Brooch centered in frame, full design visible. Even light from 45-degree softbox prevents flat, shadowless look while maintaining detail."
+    },
+    "anklet": {
+      "jewelry_type": "Anklet",
+      "subject_description": "A delicate luxury anklet is arranged in a natural open-oval shape on the velvet surface — as if just removed from the ankle and placed down gently. The fine chain links or intricate filigree settle into a soft, organic oval that reads immediately as a refined piece of foot jewelry. The clasp is visible at one end, and if the anklet has charms or pendants they hang naturally inside the oval form. The delicacy of the piece — fine chain gauge, tiny stone details — is highlighted by macro-level focus.",
+      "composition_notes": "Overhead camera view (45-degree downward). Anklet forms a horizontal oval composition in the lower-center of frame. Extreme macro detail on chain links and charm elements."
+    },
+    "cufflinks": {
+      "jewelry_type": "Cufflinks",
+      "subject_description": "A matched pair of premium luxury cufflinks is arranged facing the camera, side-by-side with a clean 3cm gap between them. The front face of each cufflink — enamel, gemstone, monogram, or textured metal — is precisely parallel to the lens, displaying all surface detail sharply. The back mechanism (toggle bar or whale-back) is partially visible at the rear, establishing the three-dimensional depth of the piece. Studio light falls cleanly across both faces simultaneously, producing matching highlights and zero cross-shadow between them.",
+      "composition_notes": "Both cufflinks face-forward, side-by-side, symmetric. Camera at slight downward angle to see face and some depth. Small, precise contact shadow beneath each piece. Tight, intimate framing."
+    },
+    "multiple_items": {
+      "jewelry_type": "Multiple Items (Jewelry Set)",
+      "subject_description": "A curated luxury jewelry set is arranged in a professionally styled ensemble composition on the velvet surface. The arrangement follows a natural hierarchy: the dominant piece (necklace or statement ring) occupies the center, flanked by supporting pieces (earrings, bracelet, ring) placed at balanced distances. Each piece in the set is independently lit and clearly legible — no piece is obscured by another. Natural contact shadows anchor each item individually. The overall composition reads as a unified set with clear visual flow directing the eye through each piece.",
+      "composition_notes": "Central piece anchors the composition. Supporting pieces form a gentle arc or symmetric frame around the center. Camera positioned slightly overhead (20-degree downward tilt). No piece overlaps another. Full ensemble visible in a single crop."
+    }
+  },
+
+  "usage_notes": "For best Gemini/Imagen API results, pass the system_role, camera_settings, environment, lighting_and_physics, and preservation_lock as a unified single text prompt. Append the relevant child subject_description at the end. Pass the negative_prompt as a separate negativePrompt parameter. Only append user_instruction if the user explicitly provided custom instructions."
+}

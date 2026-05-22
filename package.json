@@ -1,0 +1,24 @@
+{
+  "name": "jewel-ai-studio",
+  "version": "1.0.0",
+  "description": "Unified entry point for Jewel AI Studio (Frontend & Backend)",
+  "private": true,
+  "scripts": {
+    "install:backend": "npm install --prefix backend",
+    "install:frontend": "npm install --prefix frontend",
+    "install:all": "npm install && npm run install:backend && npm run install:frontend",
+    "postinstall": "npm run install:backend && npm run install:frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev": "node start.js",
+    "start": "node start.js",
+    "build:frontend": "npm run build --prefix frontend",
+    "build:backend": "npm run build --prefix backend",
+    "build:local": "npm run build:frontend && npm run build:backend",
+    "build": "echo \"Skipping server-side build. Using pre-compiled local files.\"",
+    "start:prod": "node server.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

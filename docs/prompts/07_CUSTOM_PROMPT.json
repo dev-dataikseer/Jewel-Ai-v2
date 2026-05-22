@@ -1,0 +1,55 @@
+{
+  "workflow": "CUSTOM_PROMPT",
+  "workflow_label": "Custom Prompt",
+  "description": "An open-ended, fully user-directed generation workflow for advanced users who want direct control over the creative direction. The system role and foundational photography quality standards are maintained, but all creative decisions (environment, style, mood, arrangement) are driven by the user's specific instructions.",
+
+  "master_prompt": {
+    "system_role": "Act as a world-class luxury jewelry photographer and creative director who can execute any creative brief at the highest professional standard. You are equally skilled at: photorealistic product photography, editorial fashion imaging, abstract and artistic jewelry presentations, lifestyle and narrative compositions, and fantastical or surreal luxury artistic interpretations. Whatever creative direction is requested, your output must look like the work of a professional photographer with world-class post-production support — never amateurish, never obviously AI-generated, always visually compelling and technically superb. The jewelry piece must always be treated as the star of the image, with the creative direction serving to amplify its desirability and beauty.",
+
+    "camera_settings": "Adapt the camera settings to best serve the requested creative direction. Default professional standard: Canon EOS R5, lens choice appropriate to the shot type (macro 100mm for close product work, 85mm portrait for editorial, 35mm for environmental context shots). Exposure, aperture, and ISO chosen for optimal quality and correct creative depth-of-field for the scene. Specify alternative camera choices if the brief suggests a specific aesthetic (e.g., medium format for maximum tonal richness, film grain look for vintage editorial).",
+
+    "environment": "The environment is entirely defined by the user's custom instruction. Construct the requested environment with maximum physical plausibility and luxury quality. Every surface, material, and spatial element in the environment must be chosen and rendered with the same care a professional set designer would apply to a real photography shoot. No environment should look like a generic AI background — every detail should feel specifically selected and styled for this piece.",
+
+    "lighting_and_physics": "Lighting is adapted to serve the user's creative direction. Always ensure: (1) The jewelry piece is the brightest, most luminous element in the composition — it always draws the eye first. (2) All lighting is physically plausible — every light source in the scene has a logical real-world equivalent (softbox, window, candle, sunset, neon sign). (3) Metal surfaces react correctly to the chosen light sources — warm sources produce warm specular, cool sources produce cool specular. (4) Gemstones exhibit their natural optical properties — fire, brilliance, color depth — in response to the actual light sources in the scene.",
+
+    "preservation_lock": "Regardless of creative direction, the jewelry piece itself must always be preserved: (1) The design, metal color, gemstone type, and physical form of the piece are never altered. (2) The piece is always clearly visible and legible — no obscuring by shadow, fog, or obstruction that prevents seeing the piece in detail. (3) Physical plausibility is always maintained — the jewelry obeys gravity and physical contact laws in the environment. (4) The jewelry always appears grounded and physically present in its environment — never floating, never ghostly.",
+
+    "negative_prompt": "Jewelry design altered, wrong metal color, wrong gemstone color, jewelry floating, jewelry obscured beyond recognition, amateurish composition, snapshot quality, obvious AI artifacts (melted text, impossible anatomy, fused elements), low resolution output, missing contact shadow, physically impossible scene elements, dark or muddy overall exposure that hides jewelry detail."
+  },
+
+  "child_prompts": {
+    "creative_direction_guidelines": {
+      "intent": "The following are example creative brief templates for common custom prompt directions. These are not fixed presets — they are professional starting points that users can modify or combine freely.",
+
+      "examples": {
+        "fantasy_luxury": {
+          "brief_name": "Fantasy Luxury",
+          "description": "Jewelry presented in a surreal, dream-like luxury world — glowing mist, floating petals, candlelight in a dark space, reflective mercury pool. Maintains photorealism of the jewelry but places it in an aspirational fantasy context.",
+          "example_instruction": "Place the ring on a surface of smoothed black obsidian stone with fine golden veins, surrounded by a shallow pool of translucent water with rose petals floating on the surface. Moody, atmospheric lighting from a single large candle just out of frame — warm, flickering candlelight with dramatic chiaroscuro shadows."
+        },
+        "vintage_editorial": {
+          "brief_name": "Vintage Editorial",
+          "description": "A classic, nostalgic editorial presentation referencing vintage jewelry photography from the 1960s–1980s. Warm, rich color grading, slight grain, velvet-lined jewelry tray presentation.",
+          "example_instruction": "Present the necklace coiled inside a vintage velvet-lined jewelry box — deep burgundy velvet with gilded brass box hinges visible. Warm, 1970s amber room light from one side. Slight film grain. Rich, romantic color palette."
+        },
+        "modern_minimalist": {
+          "brief_name": "Modern Minimalist",
+          "description": "Ultra-clean, ultra-white, architectural minimalism. The jewelry is the only subject against a perfectly even white or very pale gray background. Maximum negative space. Maximum clarity.",
+          "example_instruction": "Product photography against an absolutely pure, even white infinity background. Perfect overhead soft lighting. Zero visual clutter. The piece floats in white space with only a precise, natural contact shadow as a spatial anchor."
+        },
+        "lifestyle_luxury": {
+          "brief_name": "Lifestyle Luxury",
+          "description": "Jewelry placed or worn in a high-end real-world context — luxury apartment, café terrace, yacht deck, art gallery, hotel suite. Makes the jewelry feel part of a desirable lifestyle.",
+          "example_instruction": "Place the bracelet on a white marble bathroom vanity counter beside a crystal perfume bottle and a single white orchid. Soft morning daylight from a nearby frosted window diffuses cleanly over the scene."
+        },
+        "nature_organic": {
+          "brief_name": "Nature & Organic",
+          "description": "Jewelry interacting with natural, organic environments — stones, petals, leaves, sand, water, moss, wood. The contrast between the precision of fine jewelry and raw organic nature creates visual tension and beauty.",
+          "example_instruction": "The ring rests in the center of a large, textured green tropical leaf, with tiny water droplets on the leaf surface around it. Dappled tropical daylight filtering through the leaf. Deep green organic background out-of-focus."
+        }
+      }
+    }
+  },
+
+  "usage_notes": "This workflow is for advanced users who provide their own creative direction. The system role, quality standards, and preservation lock are always active. The user's custom instruction field drives the specific environment, mood, lighting story, and arrangement. No default environment or style is auto-applied if the user has provided explicit instructions."
+}

@@ -1,0 +1,218 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String?  @unique
+  name      String?
+  credits   Int      @default(100)
+  role      String   @default("ADMIN")
+  teamId    String?
+  team      Team?    @relation(fields: [teamId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  jobs      Job[]
+  assets    Asset[]
+}
+
+model Team {
+  id           String   @id @default(uuid())
+  name         String
+  whiteLabelOn Boolean  @default(false)
+  logoUrl      String?
+  users        User[]
+  createdAt    DateTime @default(now())
+}
+
+model Project {
+  id          String       @id @default(uuid())
+  name        String
+  status      String       @default("ACTIVE")
+  workflow    String?
+  jewelryType String?
+  presetId    String?
+  preset      StylePreset? @relation(fields: [presetId], references: [id])
+  jobs        Job[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Batch {
+  id            String       @id @default(uuid())
+  workflow      String
+  jewelryType   String
+  presetId      String?
+  preset        StylePreset? @relation(fields: [presetId], references: [id])
+  status        String       @default("PENDING")
+  totalJobs     Int          @default(0)
+  completedJobs Int          @default(0)
+  jobs          Job[]
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
+
+model Asset {
+  id           String   @id @default(uuid())
+  userId       String?
+  user         User?    @relation(fields: [userId], references: [id])
+  originalUrl  String
+  processedUrl String?
+  type         String
+  createdAt    DateTime @default(now())
+  jobs         Job[]
+}
+
+model Job {
+  id                  String          @id @default(uuid())
+  userId              String?
+  user                User?           @relation(fields: [userId], references: [id])
+  projectId           String?
+  project             Project?        @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  batchId             String?
+  batch               Batch?          @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  assetId             String?
+  asset               Asset?          @relation(fields: [assetId], references: [id])
+  stylePresetId       String?
+  stylePreset         StylePreset?    @relation(fields: [stylePresetId], references: [id])
+  workflow            String
+  status              String          @default("PENDING")
+  promptText          String?
+  finalPrompt         String?
+  jewelryType         String?
+  metalType           String?
+  gemstoneType        String?
+  gemstoneCut         String?
+  gemstoneTargetColor String?
+  settingType         String?
+  backgroundStyle     String?
+  lightingStyle       String?
+  inputUrl            String?
+  referenceUrl        String?
+  modelUrl            String?
+  outputUrl           String?
+  errorMessage        String?
+  provider            String?
+  providerModel       String?
+  providerMetadata    String?
+  creditsUsed         Int             @default(0)
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+  shareLinks          ShareLink[]
+  favorite            Favorite?
+
+  @@index([status])
+}
+
+model ShareLink {
+  id        String   @id @default(uuid())
+  jobId     String
+  job       Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  token     String   @unique @default(uuid())
+  views     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model Favorite {
+  id        String   @id @default(uuid())
+  jobId     String   @unique
+  job       Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model StylePreset {
+  id              String           @id @default(uuid())
+  name            String
+  workflow        String?
+  description     String?
+  promptAddon     String
+  thumbnailUrl    String?
+  isActive        Boolean          @default(true)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  jobs            Job[]
+  projects        Project[]
+  batches         Batch[]
+}
+
+model PromptTemplate {
+  id                 String       @id @default(uuid())
+  name               String
+  workflow           String       @unique
+  systemRole         String?
+  cameraSettings     String?
+  environment        String?
+  lightingAndPhysics String?
+  preservationLock   String?
+  negativePrompt     String?
+  isActive           Boolean      @default(true)
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+}
+
+model SubjectPrompt {
+  id                 String   @id @default(uuid())
+  jewelryType        String   @unique
+  coreDescription    String?
+  anatomyInteraction String?
+  physicsAndGravity  String?
+  placementRules     String?
+  isActive           Boolean  @default(true)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model ProviderSetting {
+  id              String   @id @default(uuid())
+  provider        String   @unique
+  modelName       String
+  encryptedApiKey String?
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model RateEntry {
+  id           String   @id @default(uuid())
+  rateType     String
+  metalType    String?
+  diamondShape String?
+  diamondColor String?
+  diamondClarity String?
+  carat        String?
+  value        Float
+  currency     String   @default("PKR")
+  city         String?
+  notes        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Preset {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  prompt      String
+  imageUrl    String?
+  isDefault   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+
+model CreditLedger {
+  id          String   @id @default(uuid())
+  userId      String
+  amount      Int
+  type        String
+  description String?
+  createdAt   DateTime @default(now())
+}
+
+model Settings {
+  id           String @id @default("GLOBAL")
+  geminiApiKey String?
+}

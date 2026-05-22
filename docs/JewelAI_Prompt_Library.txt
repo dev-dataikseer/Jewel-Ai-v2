@@ -1,0 +1,946 @@
+JewelAI
+
+Complete AI Prompt Library
+
+All prompts for all 11 features — ready to plug into the webapp
+
+  ------------------ ----------------------------------------
+  Document           JewelAI Prompt Library v1.0
+  Features Covered   11 features, 30+ individual prompts
+  Usage              Developer reference — copy & integrate
+  Prepared By        Ikseer
+  ------------------ ----------------------------------------
+
+How to Use This Document
+
+Every prompt in this document is production-ready. Copy the prompt
+exactly as written, then replace the [BRACKETED] variables with the
+values the user selects in the UI. Each prompt section includes:
+
+1.  The prompt text — formatted in a dark code block exactly as it
+    should be sent to the AI API.
+
+2.  A variable table — listing every [BRACKET] in the prompt, what it
+    means, and example values.
+
+3.  A developer note — implementation tips, defaults, and edge cases to
+    handle.
+
+For image generation features (1, 2, 3, 4, 5, 6, 7, 10, 11): send the
+prompt to an image AI API (Stable Diffusion, DALL-E, Midjourney API, or
+similar) alongside the user's uploaded reference image.
+
+For text/data features (8, 9): send the prompt to the Claude API or
+similar LLM and display the text response in the UI.
+
+FEATURE 1 — PUT JEWELLERY ON A MODEL
+
+These prompts are used when the user uploads a jewellery image and
+selects a jewellery type. The system places the piece on a realistic
+human model. The prompt is auto-built from the user's selections — the
+developer plugs the selected values into [BRACKETS].
+
+1A — Necklace on Model
+
+Prompt:
+
+A professional jewellery model photograph. A [SKIN_TONE] female model
+wearing a [METAL_TYPE] [NECKLACE_TYPE] necklace set with [GEMSTONE]
+gemstones, draped elegantly around her neck. The model is posed in a
+[POSE] position against a clean [BACKGROUND] background. Studio lighting
+with soft shadows. Ultra-sharp focus on the necklace. Shot on a high-end
+DSLR camera. Editorial fashion photography style. The necklace from the
+reference image is placed accurately on the model's neckline.
+Photorealistic, 8K, luxury jewellery advertisement.
+
+Variables:
+
+  ----------------- ---------------------------------- ------------------------------------------------------
+  Variable          What it represents                 Example values
+  [SKIN_TONE]       Model skin tone selected by user   fair, wheatish, dusky, dark
+  [METAL_TYPE]      Metal of the jewellery             gold, rose gold, silver, platinum
+  [NECKLACE_TYPE]   Type of necklace                   choker, layered, long pendant, collar, chain
+  [GEMSTONE]        Primary stone in piece             diamond, ruby, emerald, pearl, kundan
+  [POSE]            Model pose style                   straight-on, slight three-quarter turn, looking down
+  [BACKGROUND]      Studio background preference       pure white, soft grey, cream, gradient beige
+  ----------------- ---------------------------------- ------------------------------------------------------
+
+  📝 Developer Note: If user does not specify skin tone, default to
+  wheatish. If background not selected, default to pure white.
+
+1B — Ring on Model (Hand Shot)
+
+Prompt:
+
+A professional product model photograph of a hand wearing a [METAL_TYPE]
+ring set with a [GEMSTONE] [CUT_TYPE] cut stone. The [SKIN_TONE] hand is
+posed gracefully with fingers slightly extended, shot from a [ANGLE]
+angle. Soft studio lighting that highlights the brilliance and facets of
+the stone. Clean [BACKGROUND] background. Ultra-sharp macro focus on the
+ring. The ring from the reference image is placed accurately on the ring
+finger of the right hand. Shot on a macro lens, 8K resolution, luxury
+jewellery editorial photography.
+
+Variables:
+
+  -------------- ----------------------- -------------------------------------------------------------
+  Variable       What it represents      Example values
+  [METAL_TYPE]   Metal of the ring       gold, rose gold, white gold, silver, platinum
+  [GEMSTONE]     Stone in the ring       diamond, ruby, sapphire, emerald, moissanite
+  [CUT_TYPE]     Diamond/stone cut       round brilliant, princess, oval, pear, cushion, emerald cut
+  [SKIN_TONE]    Model hand skin tone    fair, wheatish, dusky, dark
+  [ANGLE]        Camera angle            top-down flat lay, 45-degree, side profile
+  [BACKGROUND]   Background preference   white marble, pure white, black velvet, cream fabric
+  -------------- ----------------------- -------------------------------------------------------------
+
+  📝 Developer Note: For engagement rings, always use 45-degree angle
+  unless user specifies otherwise.
+
+1C — Earrings on Model
+
+Prompt:
+
+A professional jewellery editorial photograph. A [SKIN_TONE] female
+model wearing [EARRING_TYPE] [METAL_TYPE] earrings set with [GEMSTONE]
+stones. The model's hair is [HAIR_STYLE] to clearly show both earrings.
+Shot from a [ANGLE] angle with soft studio lighting that catches the
+glimmer of the stones. Clean [BACKGROUND] background. Ultra-sharp focus
+on the earrings. The earrings from the reference image are placed
+accurately on the model's earlobes. Photorealistic, 8K, high-end
+jewellery advertisement quality.
+
+Variables:
+
+  ---------------- -------------------- ----------------------------------------------
+  Variable         What it represents   Example values
+  [SKIN_TONE]      Model skin tone      fair, wheatish, dusky, dark
+  [EARRING_TYPE]   Earring style        stud, drop, chandelier, hoop, jhumka, bali
+  [METAL_TYPE]     Metal type           gold, rose gold, silver, platinum
+  [GEMSTONE]       Stone type           diamond, ruby, emerald, pearl, kundan, polki
+  [HAIR_STYLE]     Hair arrangement     tied back, swept to one side, pinned up
+  [ANGLE]          Camera angle         side profile, slight three-quarter turn
+  [BACKGROUND]     Background           pure white, soft grey, cream, champagne
+  ---------------- -------------------- ----------------------------------------------
+
+  📝 Developer Note: Hair must always be styled away from the earrings.
+  Add this line if user picks chandelier or jhumka: 'The earrings hang
+  freely with full length visible.'
+
+1D — Bangles / Bracelet on Model
+
+Prompt:
+
+A professional jewellery model photograph of a [SKIN_TONE] wrist adorned
+with [METAL_TYPE] [BANGLE_TYPE] set with [GEMSTONE] stones. The wrist is
+angled at [ANGLE] degrees to showcase the full piece. Soft studio
+lighting highlighting the metalwork and stones. Clean [BACKGROUND]
+background. Ultra-sharp macro focus on the bangles. The jewellery from
+the reference image is placed accurately on the wrist. Shot on a macro
+lens, 8K, luxury jewellery advertisement.
+
+Variables:
+
+  --------------- ------------------------ ----------------------------------------------------------------
+  Variable        What it represents       Example values
+  [SKIN_TONE]     Model skin tone          fair, wheatish, dusky, dark
+  [METAL_TYPE]    Metal type               gold, rose gold, silver, platinum
+  [BANGLE_TYPE]   Bangle/bracelet style    solid bangle, kada, tennis bracelet, charm bracelet, churi set
+  [GEMSTONE]      Stone or finish          diamond, ruby, enamel finish, plain polished, kundan
+  [ANGLE]         Wrist angle in degrees   45, 90, flat lay
+  [BACKGROUND]    Background               white marble, pure white, black velvet, cream fabric
+  --------------- ------------------------ ----------------------------------------------------------------
+
+  📝 Developer Note: For bangle sets (churi), always show 3–5 bangles
+  stacked together unless user specifies single.
+
+1E — Maang Tikka / Headpiece on Model
+
+Prompt:
+
+A professional bridal jewellery editorial photograph. A [SKIN_TONE]
+female model wearing a [METAL_TYPE] maang tikka [TIKKA_TYPE] set with
+[GEMSTONE] stones, centred perfectly on her forehead along the hairline.
+The model's hair is parted in the centre. Soft diffused studio lighting
+that highlights the intricacy of the piece. Clean [BACKGROUND]
+background. Ultra-sharp focus on the tikka. The maang tikka from the
+reference image is placed accurately on the model. 8K photorealistic,
+high-end bridal jewellery advertisement.
+
+Variables:
+
+  -------------- -------------------- ------------------------------------------------------------------------
+  Variable       What it represents   Example values
+  [SKIN_TONE]    Model skin tone      fair, wheatish, dusky, dark
+  [METAL_TYPE]   Metal type           gold, rose gold, silver, kundan
+  [TIKKA_TYPE]   Tikka style          single pendant drop, full passa, large statement piece, delicate chain
+  [GEMSTONE]     Stone type           diamond, polki, pearl, ruby, emerald, kundan
+  [BACKGROUND]   Background           pure white, champagne, blush pink, cream
+  -------------- -------------------- ------------------------------------------------------------------------
+
+  📝 Developer Note: Always show full face and hairline in the frame for
+  maang tikka shots.
+
+FEATURE 2 — CUSTOMER TRY ON
+
+The user uploads a customer's photo AND a jewellery image. The AI places
+the jewellery accurately on the customer. The prompt tells the AI
+exactly where to place the piece and how to blend it naturally. The
+jewellery type drives the placement instruction.
+
+2A — Necklace Try On
+
+Prompt:
+
+Take the jewellery piece from the reference jewellery image and place it
+realistically and accurately on the person in the customer photo. The
+necklace should sit naturally around the person's neckline, following
+the curve of their neck. Match the lighting, shadow direction, and skin
+reflection from the customer photo. The metal should reflect light
+consistent with the photo's ambient lighting. Preserve the exact design,
+metalwork, and gemstone colours of the reference jewellery. Do not alter
+the customer's face, skin, clothing, or any other part of the image. The
+result must look like a real photograph — not a digital composite.
+Photorealistic, high resolution, natural blending.
+
+  📝 Developer Note: This prompt works as-is. The two uploaded images
+  (customer photo + jewellery image) are passed as reference images
+  alongside this prompt.
+
+2B — Ring Try On
+
+Prompt:
+
+Take the ring from the reference jewellery image and place it
+realistically on the ring finger of the right hand of the person in the
+customer photo. The ring must sit naturally on the finger with accurate
+sizing relative to the finger width. Match the lighting, shadow, and
+skin tone from the customer photo. The metal and gemstone should reflect
+light consistent with the photo environment. Preserve the exact design,
+stone colour, and metalwork of the reference ring. Do not alter any
+other part of the customer image. The result must look like a real
+photograph taken while wearing the ring. Photorealistic, high
+resolution, natural blending.
+
+  📝 Developer Note: If the customer's hand is not clearly visible in the
+  photo, the system should prompt the user to upload a clear hand photo
+  instead of processing a bad result.
+
+2C — Earrings Try On
+
+Prompt:
+
+Take the earrings from the reference jewellery image and place them
+realistically on both earlobes of the person in the customer photo. The
+earrings must hang naturally at the correct angle based on the person's
+head tilt and ear position. Match the lighting, shadow direction, and
+skin tone from the customer photo. The metal and stones should reflect
+light consistent with the photo's ambient lighting. Preserve the exact
+design, colour, and proportions of the reference earrings. Do not alter
+the customer's face, hair, or any other part of the image. The result
+must look like a real photograph. Photorealistic, high resolution,
+natural blending.
+
+  📝 Developer Note: If the customer's ears are obscured by hair, add to
+  the prompt: 'If an ear is not visible, place only the visible earring
+  and leave the hidden ear untouched.'
+
+2D — Bangle / Bracelet Try On
+
+Prompt:
+
+Take the bangle or bracelet from the reference jewellery image and place
+it realistically on the wrist of the person in the customer photo. The
+bangle must sit naturally around the wrist with correct sizing and a
+slight gap from the skin as a real bangle would appear. Match the
+lighting, shadow, and skin tone from the customer photo. Preserve the
+exact design, metalwork, and gemstone colours. Do not alter any other
+part of the customer image. The result must look like a real photograph
+taken while wearing the jewellery. Photorealistic, high resolution,
+natural blending.
+
+  📝 Developer Note: If user selects a bangle set, duplicate the bangle
+  3–5 times stacked on the wrist.
+
+FEATURE 3 — GEMSTONE COLOUR CHANGE
+
+The user uploads a jewellery image, selects the current gemstone colour,
+and selects the target gemstone colour. The AI replaces only the stone
+colour while keeping the metal, setting, and all other elements
+completely unchanged.
+
+3A — Master Gemstone Swap Prompt
+
+Prompt:
+
+In the reference jewellery image, identify all [SOURCE_STONE] coloured
+gemstones. Replace their colour and visual appearance with
+[TARGET_STONE] gemstones of the same cut, size, and setting position.
+The replacement stones must have the correct colour, transparency,
+brilliance, and light refraction properties of a real [TARGET_STONE]
+gemstone. The metal setting, metalwork design, prongs, and all non-stone
+elements must remain completely unchanged. Do not alter the background,
+lighting, or composition. The final image must be photorealistic and
+indistinguishable from a real photograph of the jewellery set with
+[TARGET_STONE] stones. 8K resolution, ultra-sharp focus.
+
+Variables:
+
+  ---------------- ----------------------------------- --------------------------------------------------------------------------------
+  Variable         What it represents                  Example values
+  [SOURCE_STONE]   The current gemstone in the image   Ruby (red), Emerald (green), Blue Sapphire (blue), Pearl (white), Onyx (black)
+  [TARGET_STONE]   The desired replacement gemstone    Yellow Sapphire, Pink Tourmaline, White Diamond, Amethyst, Coral, Tsavorite
+  ---------------- ----------------------------------- --------------------------------------------------------------------------------
+
+  📝 Developer Note: Build a dropdown UI mapping stone names to colour
+  descriptions. Pass both the name and colour to get accurate results.
+
+3B — Stone Colour Reference Map (for developers)
+
+Prompt:
+
+RUBY → deep red, high transparency, strong brilliance
+
+EMERALD → rich vivid green, slight inclusions, moderate brilliance
+
+BLUE SAPPHIRE → deep royal blue, high transparency, strong brilliance
+
+YELLOW SAPPHIRE → golden yellow, high transparency, strong brilliance
+
+PINK SAPPHIRE → soft pink, high transparency, strong brilliance
+
+WHITE DIAMOND → colourless, maximum brilliance, sharp facet reflections
+
+PINK DIAMOND → soft rose pink, maximum brilliance
+
+YELLOW DIAMOND → vivid canary yellow, maximum brilliance
+
+AMETHYST → deep purple to violet, moderate transparency
+
+AQUAMARINE → pale blue-green, high transparency
+
+TANZANITE → deep blue-violet, high transparency
+
+CITRINE → golden orange-yellow, high transparency
+
+PEARL → creamy white, soft lustre, no transparency
+
+CORAL → opaque warm orange-red
+
+TURQUOISE → opaque sky blue with matrix veining
+
+ONYX → opaque deep black, high polish
+
+KUNDAN → opaque red or green glass, set in gold foil
+
+  📝 Developer Note: This is a developer reference map — not a
+  user-facing prompt. Use the colour descriptions to enrich the
+  [TARGET_STONE] variable in the master prompt above.
+
+FEATURE 4 — CATALOGUE IMAGE GENERATOR
+
+The user uploads a raw jewellery photo taken on a phone. The AI removes
+the background, isolates the jewellery, and places it on a clean
+professional background. The prompt changes based on the background
+style selected.
+
+4A — Pure White Background
+
+Prompt:
+
+Take the jewellery piece from the reference image. Remove the existing
+background completely. Place the jewellery item centred on a pure white
+(#FFFFFF) seamless studio background. The jewellery should cast a very
+soft, natural shadow directly beneath it. Adjust the lighting to be
+soft, even, and shadowless on the jewellery itself, highlighting all
+metalwork and gemstone facets. Correct any colour cast from the original
+photo. The final result must look like a professional product photograph
+taken in a high-end studio. Sharp focus throughout, 8K resolution, clean
+edges, no reflections on the background.
+
+  📝 Developer Note: Pure white is the default. Use this prompt when no
+  background is selected.
+
+4B — Cream / Ivory Background
+
+Prompt:
+
+Take the jewellery piece from the reference image. Remove the existing
+background completely. Place the jewellery item centred on a warm cream
+(#F5F0E8) seamless studio background. The jewellery should cast a soft,
+warm shadow beneath it. Use warm, soft studio lighting that enhances the
+warmth of gold tones and the richness of coloured stones. The final
+result must look like a luxury jewellery catalogue photograph. Sharp
+focus, 8K resolution, clean edges, photorealistic.
+
+  📝 Developer Note: Cream background works best for yellow gold and
+  pearl jewellery.
+
+4C — Black / Dark Background
+
+Prompt:
+
+Take the jewellery piece from the reference image. Remove the existing
+background completely. Place the jewellery item centred on a deep black
+(#0A0A0A) seamless background. Use dramatic side lighting with a subtle
+fill light to highlight the brilliance of the gemstones and the lustre
+of the metal against the dark background. The jewellery should appear to
+float slightly with a faint glow around it. Ultra-sharp focus on all
+facets and metalwork details, 8K resolution, luxury editorial style.
+
+  📝 Developer Note: Black background is ideal for diamond and high-shine
+  jewellery. Not recommended for dark-stone pieces.
+
+4D — Marble Texture Background
+
+Prompt:
+
+Take the jewellery piece from the reference image. Remove the existing
+background completely. Place the jewellery item centred on a clean white
+Carrara marble surface with subtle grey veining. The jewellery should
+rest directly on the marble surface and cast a soft, natural shadow. Use
+soft overhead studio lighting. The marble pattern should be subtle and
+not compete with the jewellery. Sharp focus on the jewellery, gentle
+blur on the marble edges, 8K resolution, luxury product photography.
+
+  📝 Developer Note: Marble background suits bridal and high-end wedding
+  jewellery collections.
+
+4E — Gradient Background
+
+Prompt:
+
+Take the jewellery piece from the reference image. Remove the existing
+background completely. Place the jewellery item centred on a smooth
+gradient background transitioning from [GRADIENT_START] at the top to
+[GRADIENT_END] at the bottom. Soft, even studio lighting. The jewellery
+should cast a minimal soft shadow. Clean, sharp focus on all details, 8K
+resolution, modern product photography.
+
+Variables:
+
+  ------------------ ------------------------------- --------------------------------------------------------
+  Variable           What it represents              Example values
+  [GRADIENT_START]   Top colour of the gradient      soft blush pink, light champagne, pale grey, soft gold
+  [GRADIENT_END]     Bottom colour of the gradient   deep rose, warm beige, mid grey, deep amber
+  ------------------ ------------------------------- --------------------------------------------------------
+
+  📝 Developer Note: Popular gradient combos: blush-to-rose (for
+  rosegold), champagne-to-amber (for yellow gold), grey-to-charcoal (for
+  platinum/silver).
+
+FEATURE 5 — BULK CATALOGUE GENERATION
+
+Bulk generation uses the same prompts as Feature 4. The only difference
+is that the same selected background prompt is applied to every image in
+the batch. No separate prompts are needed — the developer runs Feature 4
+prompts in parallel for each uploaded image.
+
+5A — Batch Instruction (System-Level, Not User-Facing)
+
+Prompt:
+
+Process each jewellery image in the batch independently using the
+following instruction:
+
+Take the jewellery piece from the image. Remove the existing background
+completely. Place the jewellery item centred on a [SELECTED_BACKGROUND]
+background. Apply consistent soft studio lighting across all images in
+the batch. Each piece should cast a natural soft shadow. Maintain
+consistent image dimensions, resolution, and white balance across all
+outputs. Sharp focus on every piece, 8K resolution, professional product
+photography.
+
+Apply this instruction to all [TOTAL_IMAGES] images. Do not mix elements
+between images. Each output represents only the jewellery from its
+corresponding input image.
+
+Variables:
+
+  ----------------------- ------------------------------------------------------------ --------------------------------------------
+  Variable                What it represents                                           Example values
+  [SELECTED_BACKGROUND]   Background style chosen by user, same as Feature 4 options   pure white, cream, black, marble, gradient
+  [TOTAL_IMAGES]          Number of images in the batch                                1 to 50
+  ----------------------- ------------------------------------------------------------ --------------------------------------------
+
+  📝 Developer Note: Pass each image individually to the AI API in
+  parallel requests, all using the same prompt. Combine results
+  server-side before returning to the user.
+
+FEATURE 6 — FESTIVE / MARKETING POST CREATOR
+
+The user uploads a jewellery image, selects an occasion, enters their
+brand name, and optionally enters a tagline or offer text. The AI
+creates a complete ready-to-post marketing image. One master prompt
+covers all occasions — the occasion drives the visual theme variables.
+
+6A — Master Festive Post Prompt
+
+Prompt:
+
+Create a professional jewellery marketing advertisement image. Place the
+jewellery from the reference image as the hero product in the centre of
+the composition. Apply a [OCCASION] themed visual design: use
+[COLOUR_PALETTE] colours, [DECORATIVE_ELEMENTS] as decorative elements,
+and [ATMOSPHERE] lighting atmosphere. Add the brand name "[BRAND_NAME]"
+in elegant typography at the [LOGO_POSITION] of the image. Add the
+tagline "[TAGLINE]" in a complementary font beneath the brand name. The
+overall design should feel premium, luxurious, and culturally
+appropriate for the [OCCASION] occasion. The jewellery must be sharp,
+well-lit, and the focal point of the composition. Format: [FORMAT].
+Photorealistic product, decorative elements as design overlay, high
+resolution, print-ready quality.
+
+Variables:
+
+  ----------------------- --------------------------------------------- ---------------------------------------------------------------------------------
+  Variable                What it represents                            Example values
+  [OCCASION]              Selected occasion from the template library   Eid, Diwali, Valentine's Day, Christmas, New Year, Wedding Season, Karva Chauth
+  [COLOUR_PALETTE]        Driven by occasion selection — see 6B below   
+  [DECORATIVE_ELEMENTS]   Driven by occasion — see 6B below             
+  [ATMOSPHERE]            Lighting mood driven by occasion              warm golden glow, soft romantic pink, festive bright, cool silver shimmer
+  [BRAND_NAME]            Entered by the user                           Hussaini Jewellers, Raj Jewels, Al-Noor Gold
+  [TAGLINE]               Entered by user or left empty                 Celebrate in Gold, Love Sparkles, New Year New Look
+  [LOGO_POSITION]         Position of brand name text                   top centre, bottom centre, bottom left
+  [FORMAT]                Selected by user                              1080x1080px square, 1080x1920px portrait story, 1920x1080px landscape banner
+  ----------------------- --------------------------------------------- ---------------------------------------------------------------------------------
+
+  📝 Developer Note: If user leaves tagline empty, remove that line from
+  the prompt entirely.
+
+6B — Occasion Theme Reference (For Developers)
+
+Prompt:
+
+EID:
+
+Colour palette → rich emerald green, gold, deep burgundy
+
+Decorative elements → crescent moon motifs, star patterns, geometric
+arabesque borders, soft bokeh lights
+
+Atmosphere → warm golden glow
+
+DIWALI:
+
+Colour palette → deep orange, gold, crimson red, marigold yellow
+
+Decorative elements → diyas (oil lamps), marigold flower borders,
+rangoli patterns, sparkle bokeh
+
+Atmosphere → warm festive glow with soft sparkle
+
+VALENTINE'S DAY:
+
+Colour palette → rose red, blush pink, soft gold, ivory white
+
+Decorative elements → rose petals, soft hearts, delicate floral borders
+
+Atmosphere → soft romantic pink with dreamy glow
+
+KARVA CHAUTH:
+
+Colour palette → deep red, gold, orange, terracotta
+
+Decorative elements → full moon element, thali with diya,
+mehndi-inspired borders
+
+Atmosphere → warm orange moonlight glow
+
+CHRISTMAS:
+
+Colour palette → deep red, forest green, gold, ivory white
+
+Decorative elements → snowflakes, holly leaves, subtle star bokeh,
+ribbon accents
+
+Atmosphere → cool festive shimmer with warm accent lights
+
+NEW YEAR:
+
+Colour palette → champagne gold, silver, midnight black, white
+
+Decorative elements → confetti, firework burst effects, star trails,
+"2025" or "New Year" text element
+
+Atmosphere → celebratory shimmer, dark background with light bursts
+
+WEDDING SEASON:
+
+Colour palette → rich red, gold, ivory, deep pink
+
+Decorative elements → lotus flowers, mandala borders, soft floral
+overlay
+
+Atmosphere → luxurious warm bridal glow
+
+GENERIC / SALE:
+
+Colour palette → clean white or black with brand accent colour
+
+Decorative elements → minimal geometric elements, clean lines
+
+Atmosphere → high-contrast product focus lighting
+
+  📝 Developer Note: This is a developer lookup table. Pull the correct
+  row when the user selects an occasion and inject into the master
+  prompt 6A.
+
+FEATURE 7 — CUSTOM PROMPT GENERATOR
+
+The user types their own prompt. The platform wraps their input in a
+jewellery-context framing prompt to ensure the AI understands the
+reference image and maintains quality. The user's custom text is
+injected at [USER_PROMPT].
+
+7A — Custom Prompt Wrapper
+
+Prompt:
+
+You are a professional jewellery photographer and AI image specialist.
+The reference image contains a jewellery piece. Using the jewellery from
+the reference image as the product, create the following:
+
+[USER_PROMPT]
+
+Ensure the jewellery from the reference image is faithfully reproduced
+with accurate metal colour, gemstone colour, design details, and
+proportions. The jewellery must be the clear focal point of the output.
+Photorealistic, high resolution, professional quality.
+
+Variables:
+
+  --------------- ---------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Variable        What it represents                                         Example values
+  [USER_PROMPT]   The raw text the user typed into the custom prompt field   Create a Diwali post for my store with a marigold border. / Place this ring on a black velvet surface with dramatic lighting. / Show this necklace as if it's floating in water.
+  --------------- ---------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  📝 Developer Note: Do not modify the user's prompt — only wrap it. If
+  the user's prompt is harmful or irrelevant to jewellery, reject it at
+  validation before sending to the AI.
+
+7B — Starter Templates (Shown in Prompt Library by Default)
+
+Prompt:
+
+TEMPLATE 1 — Luxury Dark:
+
+Place the jewellery on a black velvet surface with a single dramatic
+spotlight hitting the stone. Dark background, ultra-sharp focus on the
+gemstone facets, 8K resolution.
+
+TEMPLATE 2 — Flat Lay Lifestyle:
+
+Place the jewellery in a flat lay arrangement on a white marble surface
+surrounded by soft rose petals and a small green leaf sprig. Natural
+daylight lighting from the left.
+
+TEMPLATE 3 — Water / Glass Effect:
+
+Show the jewellery piece appearing to float just below the surface of
+clear water with gentle ripple distortion and light caustics. Blue-teal
+water tone, photorealistic.
+
+TEMPLATE 4 — Golden Hour Outdoor:
+
+Place the jewellery on a natural wooden surface with warm golden hour
+sunlight hitting it from the side. Soft bokeh background of blurred
+green foliage.
+
+TEMPLATE 5 — Gift / Presentation:
+
+Show the jewellery inside an open luxury jewellery box lined with cream
+satin. The box is placed on a white surface with a soft ribbon beside
+it. Studio lighting, gift advertisement style.
+
+TEMPLATE 6 — Mirror Reflection:
+
+Place the jewellery on a reflective glass surface so a perfect mirror
+reflection appears beneath it. Clean white studio background. Soft
+lighting from above.
+
+  📝 Developer Note: These 6 templates are pre-loaded into every user's
+  Prompt Library on account creation. Users can edit, rename, or delete
+  them.
+
+FEATURE 8 — DIAMOND RATE FETCH
+
+This feature is not an AI image prompt — it uses a pricing API or
+database. However, a natural language prompt is needed to display the
+result clearly and to handle edge cases. The following prompts drive the
+conversational display layer.
+
+8A — Rate Display Prompt (Result Formatting)
+
+Prompt:
+
+Based on the following diamond specifications, provide pricing guidance
+in a clear, professional format:
+
+Shape: [SHAPE]
+
+Colour Grade: [COLOR]
+
+Clarity Grade: [CLARITY]
+
+Carat Weight: [CARAT]
+
+Discount Applied: [DISCOUNT]%
+
+Return the estimated price range in INR and USD. Explain in 2 sentences
+what factors most influence this specific stone's value. Add a
+disclaimer that prices are indicative and vary by supplier and market
+conditions. Keep the tone professional and helpful — as if a senior
+diamond trader is giving guidance.
+
+Variables:
+
+  ------------ --------------------------- --------------------------------------------------------------------------------
+  Variable     What it represents          Example values
+  [SHAPE]      Diamond shape               Round Brilliant, Princess, Oval, Pear, Cushion, Emerald Cut, Marquise, Radiant
+  [COLOR]      GIA colour grade            D, E, F, G, H, I, J
+  [CLARITY]    GIA clarity grade           FL, IF, VVS1, VVS2, VS1, VS2, SI1, SI2
+  [CARAT]      Stone weight in carats      0.25, 0.50, 1.00, 1.50, 2.00
+  [DISCOUNT]   Trade discount percentage   0, 5, 10, 15, 20, 25, 30
+  ------------ --------------------------- --------------------------------------------------------------------------------
+
+  📝 Developer Note: This prompt is sent to the Claude API, not an image
+  AI. It generates a text response that is displayed in the rate result
+  UI.
+
+FEATURE 9 — GOLD & SILVER RATE FETCH
+
+This feature fetches live metal rates from an external API (e.g.
+metals-api.com or a local data source). No AI image prompt needed. The
+following prompt drives the text display layer for rate presentation.
+
+9A — Rate Display Prompt
+
+Prompt:
+
+Today's metal rates for [CITY], [COUNTRY]:
+
+Gold 24K: ₹[GOLD_24K] per gram | ₹[GOLD_24K_TOLA] per tola
+
+Gold 22K: ₹[GOLD_22K] per gram | ₹[GOLD_22K_TOLA] per tola
+
+Gold 18K: ₹[GOLD_18K] per gram | ₹[GOLD_18K_TOLA] per tola
+
+Silver: ₹[SILVER] per gram | ₹[SILVER_TOLA] per tola
+
+Rates updated: [TIMESTAMP]
+
+Note: Rates shown are indicative market rates. Actual buying and selling
+rates at jewellers may vary.
+
+Variables:
+
+  ------------- ----------------------------------------------- ---------------------------------------
+  Variable      What it represents                              Example values
+  [CITY]        User's selected city                            Karachi, Mumbai, Delhi, Dubai, London
+  [COUNTRY]     Country of selected city                        Pakistan, India, UAE, UK
+  [GOLD_24K]    Live 24K gold rate per gram in local currency   From metals API
+  [GOLD_22K]    Calculated as 24K × 0.9167                      From metals API calculation
+  [GOLD_18K]    Calculated as 24K × 0.75                        From metals API calculation
+  [SILVER]      Live silver rate per gram                       From metals API
+  [TIMESTAMP]   Time of last rate update                        19 May 2026, 10:34 AM PKT
+  ------------- ----------------------------------------------- ---------------------------------------
+
+  📝 Developer Note: 1 tola = 11.6638 grams. Calculate tola rates
+  server-side before injecting into display. If API is down, show last
+  cached rate with a warning banner.
+
+FEATURE 10 — AI PRODUCT VIDEO GENERATOR
+
+The user uploads a jewellery image and selects a video style. These
+prompts are for video generation AI (e.g. Runway, Kling, or similar).
+Each style has its own motion and lighting prompt.
+
+10A — Rotating Showcase
+
+Prompt:
+
+Create a smooth [DURATION]-second product video of the jewellery piece
+from the reference image. The jewellery rotates slowly 360 degrees on a
+[SURFACE] surface under soft studio lighting. The camera is at a slight
+downward angle. As the piece rotates, the light catches the gemstones
+and metal with realistic glimmer and reflection. Background is clean
+[BACKGROUND]. No text overlay. Cinematic product video quality, 4K,
+60fps.
+
+Variables:
+
+  -------------- -------------------------------- --------------------------------------------------------------------------
+  Variable       What it represents               Example values
+  [DURATION]     Video length in seconds          5, 10, 15
+  [SURFACE]      Surface the jewellery rests on   white acrylic pedestal, black velvet pad, glass platform, marble surface
+  [BACKGROUND]   Background style                 pure white, black, soft grey gradient
+  -------------- -------------------------------- --------------------------------------------------------------------------
+
+  📝 Developer Note: Rotating Showcase is the recommended default video
+  style.
+
+10B — Sparkle Effect
+
+Prompt:
+
+Create a [DURATION]-second product video of the jewellery piece from the
+reference image. The jewellery is stationary, displayed on a [SURFACE].
+Soft studio lighting pulses gently, causing the gemstones and metal
+facets to catch light and sparkle with realistic brilliance. Small bokeh
+light particles drift softly around the piece. Background is
+[BACKGROUND]. The overall feel is luxurious and magical. No text
+overlay. Cinematic quality, 4K, 60fps.
+
+Variables:
+
+  -------------- -------------------- -------------------------------------------
+  Variable       What it represents   Example values
+  [DURATION]     Video length         5, 10, 15
+  [SURFACE]      Display surface      white acrylic, black velvet, glass
+  [BACKGROUND]   Background           deep black, soft dark blue, midnight navy
+  -------------- -------------------- -------------------------------------------
+
+  📝 Developer Note: Sparkle Effect works best with diamond and
+  high-clarity stone jewellery.
+
+10C — Luxury Reveal
+
+Prompt:
+
+Create a [DURATION]-second cinematic product video. Begin with a closed
+luxury jewellery box on a [SURFACE] surface. The lid slowly opens to
+reveal the jewellery piece from the reference image resting on cream
+satin lining. Dramatic lighting from above gradually illuminates the
+jewellery as the lid opens. End with a 3-second static close-up of the
+jewellery in the open box. Photorealistic, high-end retail advertisement
+quality, 4K, 60fps.
+
+Variables:
+
+  ------------ ------------------------- ----------------------------------------
+  Variable     What it represents        Example values
+  [DURATION]   Total video length        10, 15
+  [SURFACE]    Surface the box sits on   white marble, dark wood, black granite
+  ------------ ------------------------- ----------------------------------------
+
+  📝 Developer Note: Luxury Reveal requires minimum 10 seconds to execute
+  correctly.
+
+10D — Fade In / Simple
+
+Prompt:
+
+Create a [DURATION]-second clean product video. The jewellery piece from
+the reference image fades in from black, centred against a [BACKGROUND]
+background under soft even studio lighting. Hold for [HOLD] seconds,
+then fade out. The lighting is consistent and even throughout. No
+motion, no rotation. Simple, clean, professional. 4K resolution.
+
+Variables:
+
+  -------------- ----------------------------------------- -------------------------------------
+  Variable       What it represents                        Example values
+  [DURATION]     Total video length                        5, 10
+  [BACKGROUND]   Background colour                         pure white, cream, black, soft grey
+  [HOLD]         Duration the jewellery is fully visible   3, 6, 10 seconds
+  -------------- ----------------------------------------- -------------------------------------
+
+  📝 Developer Note: Fade In is the fastest to generate and uses the
+  fewest credits. Ideal for quick social media content.
+
+FEATURE 11 — IMAGE INPAINTING / TOUCH-UP
+
+The user selects a region of an AI-generated image using a brush tool
+and types a correction instruction. The prompt wraps their instruction
+in a jewellery-aware context so the AI knows to preserve everything
+outside the selected region.
+
+11A — Inpainting Wrapper Prompt
+
+Prompt:
+
+The selected region (masked area) of this jewellery image needs to be
+corrected. Apply the following correction only within the masked area:
+
+[USER_CORRECTION]
+
+Preserve everything outside the masked area exactly as it appears — do
+not alter any unmasked part of the image. Within the masked area, the
+correction must blend seamlessly with the surrounding image in terms of
+lighting, colour, texture, and style. The result must be photorealistic
+and appear as if the correction was always part of the original image.
+High resolution, seamless blending.
+
+Variables:
+
+  ------------------- ---------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Variable            What it represents                             Example values
+  [USER_CORRECTION]   The correction instruction typed by the user   Fix the broken chain link. / Remove the shadow on the left side. / Make the ruby stone brighter. / Add more sparkle to the diamond. / Clean up the background smudge.
+  ------------------- ---------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  📝 Developer Note: Pass the original image, the mask image (painted
+  region as white on black), and this prompt to the inpainting API
+  endpoint. Preserve unmasked pixels exactly.
+
+11B — Quick Fix Presets (Shown as Buttons in UI)
+
+Prompt:
+
+PRESET 1 — Remove Background Smudge:
+
+Remove any smudge, shadow, or dirt marks in the selected area. Replace
+with a clean, seamless extension of the surrounding background. No
+visible editing marks.
+
+PRESET 2 — Brighten Stone:
+
+Increase the brilliance and light refraction of the gemstone in the
+selected area. The stone should appear more vibrant and sparkly while
+maintaining its natural colour and cut appearance.
+
+PRESET 3 — Fix Metal Finish:
+
+Smooth out any rough, scratched, or uneven metal surface in the selected
+area. The metal should appear polished and consistent with the rest of
+the piece.
+
+PRESET 4 — Remove Reflection:
+
+Remove any unwanted reflection, glare, or hot spot in the selected area.
+Replace with a natural-looking surface consistent with the surrounding
+material.
+
+PRESET 5 — Deepen Shadow:
+
+Add a more natural and defined shadow in the selected area to ground the
+jewellery piece on the surface. Shadow should be soft-edged and
+directionally consistent with the rest of the image.
+
+  📝 Developer Note: These 5 presets appear as quick-tap buttons in the
+  inpainting UI. When the user taps a preset, the preset text is
+  automatically injected as [USER_CORRECTION] in the wrapper prompt 11A.
+
+Quick Reference — Variable Defaults
+
+When a user does not make a selection, use these defaults. Never leave a
+variable empty — a missing value breaks the prompt.
+
+  --------------------------- ----------------- --------------------------------------------
+  Feature                     Variable          Default Value
+  Model Shot (all types)      [SKIN_TONE]       wheatish
+  Model Shot (all types)      [BACKGROUND]      pure white
+  Model Shot (necklace)       [POSE]            straight-on
+  Ring on Model               [ANGLE]           45-degree
+  Ring on Model               [SURFACE]         white marble
+  Catalogue Image             [BACKGROUND]      pure white (#FFFFFF)
+  Festive Post                [LOGO_POSITION]   bottom centre
+  Festive Post                [FORMAT]          1080x1080px square
+  Gemstone Change             [SOURCE_STONE]    Prompt user to select — no default
+  Video Generator             [DURATION]        10 seconds
+  Video Generator             [SURFACE]         white acrylic pedestal
+  Video Generator — Fade In   [BACKGROUND]      pure white
+  Bulk Catalogue              [BACKGROUND]      Same as user's last Catalogue Image choice
+  Gold & Silver Rates         [CITY]            User's saved city from account settings
+  --------------------------- ----------------- --------------------------------------------
+
+— End of Prompt Library —

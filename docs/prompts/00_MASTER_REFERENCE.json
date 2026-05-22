@@ -1,0 +1,234 @@
+{
+  "document_type": "MASTER_REFERENCE",
+  "title": "Jewel AI Studio — Prompt Engineering Master Reference",
+  "version": "2.0",
+  "last_updated": "2026-05",
+  "description": "Comprehensive master reference document for all Jewel AI Studio prompt engineering. Covers: prompt architecture, workflow descriptions, jewelry type child prompts, gemstone science, metal physics, environment library, and quality standards.",
+
+  "prompt_architecture": {
+    "structure_overview": "Every generation in Jewel AI Studio uses a layered modular JSON architecture. The layers are assembled in order and compiled into a single final_compiled_prompt string sent to the Gemini/Imagen API.",
+    "layers": {
+      "1_system_role": "Defines the AI's expert identity and professional mandate. Sets quality expectations. Written in second-person ('Act as...'). Always the first block in the compiled prompt.",
+      "2_camera_settings": "Defines the camera, lens, aperture, ISO, and photographic quality parameters. Grounds the generation in real photographic physics.",
+      "3_environment": "Defines the physical world around the jewelry — the surface, the background, the spatial context. Must be physically plausible and luxury-grade.",
+      "4_subject": "Defines the specific jewelry piece's composition, positioning, and arrangement. One entry per jewelry type selected. If multiple types selected, all are compiled into a unified multi-piece arrangement.",
+      "5_user_instruction": "Optional. Appended only if the user explicitly provides a custom instruction. Contains no default fallback — if empty, this block is completely omitted from the compiled prompt.",
+      "6_lighting_and_physics": "Defines the light sources, their direction, intensity, and how they interact with the jewelry's metal and gemstones. Always physically accurate.",
+      "7_preservation_lock": "Critical safety block. Lists all non-negotiable preservation mandates for the jewelry's physical integrity.",
+      "8_negative_prompt": "Passed as a separate Gemini negativePrompt parameter. Lists all forbidden outputs to suppress common AI artifacts."
+    },
+    "compilation_formula": "final_compiled_prompt = system_role + camera_settings + subject + [user_instruction if present] + environment + lighting_and_physics + preservation_lock"
+  },
+
+  "gemstone_science_library": {
+    "description": "Reference data for accurate gemstone optical property descriptions in prompts. Use these physical properties to ensure generated gemstones look scientifically correct.",
+    "gemstones": {
+      "diamond": {
+        "mineral": "Diamond (Carbon, cubic crystal)",
+        "refractive_index": "2.417–2.419",
+        "dispersion_fire": "0.044 (high — rainbow fire in facets)",
+        "brilliance": "Extreme — highest brilliance of all natural gemstones",
+        "color_grades": "D (colorless) to Z (light yellow/brown). Fancy colors: pink, blue, yellow, green, red, black",
+        "visual_characteristics": "Bright white-silver brilliance, spectral rainbow fire in pavilion facets, sharp on/off scintillation pattern, table reflects clean bright white spot from light source",
+        "prompt_key_phrases": "extreme brilliance, spectral fire, rainbow dispersion, clean white light return, faceted brilliance pattern, culet visible as dark circle at stone center"
+      },
+      "ruby": {
+        "mineral": "Corundum (Aluminum Oxide) — chromium causes red color",
+        "refractive_index": "1.762–1.770",
+        "dispersion_fire": "0.018 (low)",
+        "brilliance": "High",
+        "color_grades": "Pigeon blood red (finest), purplish red, orangey red",
+        "visual_characteristics": "Deep saturated red body, warm red fire in facets, possible asterism in cabochon cuts (6-rayed star), high brilliance, pure chromium red without orange",
+        "prompt_key_phrases": "chromium red, pigeon blood saturation, deep red fire, warm red brilliance, no orange overtone, red depth"
+      },
+      "sapphire": {
+        "mineral": "Corundum (Aluminum Oxide) — iron and titanium cause blue color",
+        "refractive_index": "1.762–1.770",
+        "dispersion_fire": "0.018 (low)",
+        "brilliance": "High",
+        "color_grades": "Royal blue, cornflower blue, padparadscha (pink-orange), yellow, purple, green, white",
+        "visual_characteristics": "Deep saturated blue with violet undertone in deep shadow areas, cool blue-white specular highlights, velvety blue depth",
+        "prompt_key_phrases": "royal blue saturation, cool blue fire, blue-violet depth, velvety blue luminosity, cornflower clarity"
+      },
+      "emerald": {
+        "mineral": "Beryl (Beryllium Aluminum Silicate) — chromium/vanadium causes green color",
+        "refractive_index": "1.565–1.602",
+        "dispersion_fire": "0.014 (very low)",
+        "brilliance": "Moderate (lower than diamond/corundum)",
+        "color_grades": "Colombian green (finest), Brazilian green, Zambian green",
+        "visual_characteristics": "Rich deep green body, jardins (natural inclusions giving internal depth), characteristic oily luster, warm velvety green glow, moderate facet brilliance",
+        "prompt_key_phrases": "colombian green depth, jardins internal texture, velvety green luster, oily emerald gloss, warm green glow, rich forest green"
+      },
+      "moissanite": {
+        "mineral": "Silicon Carbide (lab-grown)",
+        "refractive_index": "2.650–2.690",
+        "dispersion_fire": "0.104 (highest of common gemstones — 2.4x more fire than diamond)",
+        "brilliance": "Extreme — slightly more brilliant than diamond",
+        "color_grades": "Colorless (DEF equivalent), near-colorless, slightly warm (GHI equivalent)",
+        "visual_characteristics": "Near-colorless or very slight warmth, dramatically more fire than diamond (more intense rainbow flashes), doubly refractive creating a slight doubling of facets visible at high magnification",
+        "prompt_key_phrases": "exceptional fire dispersion, rainbow flashes more intense than diamond, brilliant colorless, slight warm tint in deep body, maximum light return"
+      },
+      "pearl": {
+        "mineral": "Calcium Carbonate (aragonite) secreted by mollusks",
+        "refractive_index": "1.52–1.66",
+        "dispersion_fire": "None",
+        "brilliance": "Moderate — unique 'orient' and 'luster' quality rather than brilliance",
+        "types": "Akoya (round, white/cream), South Sea (large, white/gold), Tahitian (black/dark multicolor), Freshwater (various shapes, white/pink/lavender)",
+        "visual_characteristics": "Silky, organic luster (depth of light reflecting from beneath surface layers), orient (rainbow iridescence on surface), perfectly round or baroque shapes, warm creamy body color for Akoya",
+        "prompt_key_phrases": "silky orient luster, deep pearlescent glow, surface iridescence, creamy white body, organic roundness, layered nacre depth, soft luminosity"
+      },
+      "opal": {
+        "mineral": "Hydrated Silicon Dioxide",
+        "refractive_index": "1.37–1.47",
+        "dispersion_fire": "N/A — optical property is play-of-color, not fire",
+        "special_phenomenon": "Play-of-color — spectral color patches shift and move across the surface",
+        "types": "White opal, black opal (most valuable), crystal opal, fire opal (orange body)",
+        "visual_characteristics": "Shifting patches of spectral color (red, orange, green, blue, violet) across a body color (white, dark, or transparent), color patches move as viewing angle changes, no faceting — cabochon dome shape",
+        "prompt_key_phrases": "play-of-color phenomenon, shifting spectral patches, organic color patterns, deep black body play-of-color, dome-shaped cabochon, vivid spectral flashes across surface"
+      },
+      "tanzanite": {
+        "mineral": "Zoisite (calcium aluminum silicate) — vanadium causes color",
+        "refractive_index": "1.691–1.700",
+        "dispersion_fire": "0.030 (moderate)",
+        "special_phenomenon": "Trichroism — shows blue, violet, and burgundy depending on viewing axis",
+        "visual_characteristics": "Deep blue-violet primary hue, shifting to burgundy/reddish-purple at certain angles, rich and velvety depth, high brilliance",
+        "prompt_key_phrases": "blue-violet trichroic depth, shifting burgundy axis, velvety tanzanite blue, rich violet luminosity, deep color with directional shift"
+      }
+    }
+  },
+
+  "metal_physics_library": {
+    "description": "Reference data for accurate metal surface rendering descriptions. Use these physical properties to ensure generated metals look correctly differentiated and photorealistic.",
+    "metals": {
+      "18k_yellow_gold": {
+        "composition": "75% pure gold, 25% alloy (copper + silver)",
+        "color_hex_approximate": "#CFB53B to #F4C842",
+        "surface_finishes": {
+          "polished": "Mirror-bright warm gold surface, yellow-gold specular highlights (not white), deep honey gold in mid-tones, rich dark gold in shadow recesses",
+          "brushed_satin": "Fine directional linear grain perpendicular to scratch direction, matte warm gold with narrow bright directional highlight stripe",
+          "hammered": "Irregular faceted surface, each hammer mark creates a micro-mirror reflecting environment in different directions simultaneously",
+          "matte": "Diffuse warm gold with almost no specular, slightly rougher surface texture, uniform warm gold"
+        },
+        "prompt_key_phrases": "warm honey gold, rich yellow-gold specular, warm amber metal reflections, 18-karat warmth, deep gold shadow depth"
+      },
+      "platinum": {
+        "composition": "95% pure platinum, 5% alloy (rhodium/iridium)",
+        "color_hex_approximate": "#E8E8E8 to #B4B4B4",
+        "surface_finishes": {
+          "polished": "Cool steel-blue mirror surface, blue-white specular highlights, neutral cool silver mid-tones, cool dark gray shadows",
+          "brushed": "Fine directional grain, matte cool silver with a precise directional bright stripe, ultra-precise and architectural feel",
+          "granulated": "Textured granular surface typical of antique platinum, each grain a tiny mirror creating complex scattered reflections"
+        },
+        "prompt_key_phrases": "cool platinum luster, architectural silver precision, blue-white specular, cool neutral metal, pristine platinum finish"
+      },
+      "18k_white_gold": {
+        "composition": "75% pure gold, 25% white alloy (palladium or nickel), rhodium plated",
+        "color_hex_approximate": "#D8D8D8 to #C0C0C0 (slightly warmer than platinum due to gold alloy)",
+        "notes": "Very similar to platinum visually but slightly warmer and can develop a warm undertone as rhodium plating wears — appears brighter/more mirror-like than platinum due to rhodium",
+        "prompt_key_phrases": "rhodium-plated brilliance, bright silver mirror, slight warmth beneath cool surface, contemporary white metal, maximum brightness"
+      },
+      "14k_rose_gold": {
+        "composition": "58.5% pure gold, 41.5% alloy (copper-heavy to create pink color)",
+        "color_hex_approximate": "#F4A460 to #E8836A",
+        "surface_finishes": {
+          "polished": "Warm blush-copper-pink mirror surface, warm pink-white specular highlights, rich rose-copper mid-tones, deeper copper in shadow recesses",
+          "brushed": "Fine directional grain with warm rose-copper matte and a precise bright blush stripe"
+        },
+        "prompt_key_phrases": "blush rose copper warmth, romantic pink metal, warm rose specular, copper-rose mid-tones, contemporary rose warmth"
+      },
+      "sterling_silver": {
+        "composition": "92.5% pure silver, 7.5% copper alloy",
+        "color_hex_approximate": "#C0C0C0 to #A8A8A8",
+        "notes": "Slightly warmer and slightly yellower than platinum or rhodium-plated white gold. Can show subtle warmth or slight yellow hue. Can tarnish to dark gray-brown (oxidized silver has its own desirable aesthetic in some designs).",
+        "prompt_key_phrases": "classic sterling brightness, slightly warm silver, neutral metal luster, artisanal silver quality"
+      }
+    }
+  },
+
+  "environment_library": {
+    "description": "Curated library of professional photography environments for jewelry. Each environment is described with surface, background, lighting, and mood characteristics.",
+    "environments": {
+      "studio_cream_velvet": {
+        "name": "Premium Cream Velvet Studio",
+        "surface": "Cream-white velvet with ultra-fine micro-texture, soft and tactile",
+        "background": "Seamless cream-white infinity sweep, gradient from warm white at center to very slightly shadowed at edges",
+        "lighting_mood": "5500K warm-neutral studio strobe, overhead-front softbox, fill reflector",
+        "best_for": "All jewelry types, all metals, all gemstones — universal commercial standard",
+        "color_palette": "Cream, warm white, soft ivory shadows"
+      },
+      "black_acrylic": {
+        "name": "High-Gloss Black Acrylic",
+        "surface": "Mirror-polished black acrylic with perfect reflection",
+        "background": "Deep obsidian black infinity, blue-black gradient preventing flatness",
+        "lighting_mood": "Controlled softbox, mirror reflection of jewelry visible on surface",
+        "best_for": "Maximum drama and contrast, excellent for diamonds and white metals",
+        "color_palette": "Jet black, blue-black, bright specular white"
+      },
+      "white_carrara_marble": {
+        "name": "Carrara Marble",
+        "surface": "White marble with organic gray veining, matte-satin finish",
+        "background": "Marble wall sweep (same marble continuing upward), or neutral white background",
+        "lighting_mood": "Natural daylight from side window, 5600K",
+        "best_for": "Yellow gold, colored gemstones, romantic pieces",
+        "color_palette": "Pure white, gray silver veining, warm stone tones"
+      },
+      "dark_navy_velvet": {
+        "name": "Midnight Navy Velvet",
+        "surface": "Rich midnight navy blue velvet, deep and tactile",
+        "background": "Deep blue-black velvet continuing upward",
+        "lighting_mood": "Dramatic single-source side lighting, deep shadow areas",
+        "best_for": "Diamonds, gold jewelry, maximum luxury drama",
+        "color_palette": "Deep navy, gold accent light, rich shadow depth"
+      },
+      "golden_hour_organic": {
+        "name": "Golden Hour Natural Light",
+        "surface": "Light travertine, pale stone, or bleached wood",
+        "background": "Warm amber outdoor soft-bokeh environment (3500–4000K)",
+        "lighting_mood": "Warm directional golden hour sunlight from one side, amber rim light on jewelry",
+        "best_for": "Yellow gold, rose gold, rubies, yellow sapphires, organic-design pieces",
+        "color_palette": "Warm amber, golden orange, soft cream"
+      },
+      "glass_surface": {
+        "name": "Clear Glass / Transparent Surface",
+        "surface": "Clear optical glass panel — jewelry rests on top, glass allows subtle transparent reflection",
+        "background": "Pure white or gradient gray behind the glass",
+        "lighting_mood": "Clean, even studio light from above, glass adds dimension without strong reflection",
+        "best_for": "Modern, architectural jewelry, diamonds, geometric pieces",
+        "color_palette": "Pure white, cool gray, transparent depth"
+      },
+      "luxury_interior": {
+        "name": "Luxury Interior Lifestyle",
+        "surface": "White marble countertop, warm oak surface, or glass shelf",
+        "background": "Upscale interior — white walls, out-of-focus luxury furnishings, natural window light",
+        "lighting_mood": "Large soft window daylight (5600K), secondary warm interior ambient fill",
+        "best_for": "Lifestyle marketing, aspirational brand positioning, all jewelry types",
+        "color_palette": "Warm white, natural daylight, interior warmth"
+      }
+    }
+  },
+
+  "quality_standards": {
+    "commercial_minimum": "Every generated image must meet commercial catalog standard — suitable for product listing on luxury e-commerce platforms without any further retouching.",
+    "luxury_campaign_target": "The aspirational target is luxury brand campaign quality — the level of Cartier, Tiffany, Van Cleef & Arpels, or Harry Winston advertising photography.",
+    "rejection_criteria": [
+      "Any visible AI artifact (melted text, impossible geometry, stippled patterns on metal)",
+      "Any alteration to the jewelry design that was not requested",
+      "Floating jewelry without a physical contact point",
+      "Backgrounds that look flat, digital, or obviously AI-generated",
+      "Lighting that is physically impossible for the described scene",
+      "Gemstone colors that are incorrect for the specified mineral",
+      "Over-processed, HDR-like, or obviously retouched appearance",
+      "Low resolution, grain, or compression artifacts"
+    ]
+  },
+
+  "workflow_files": {
+    "01": {"file": "01_CATALOG_IMAGE.json", "workflow": "CATALOG_IMAGE", "description": "Studio product catalog photography — all jewelry types"},
+    "02": {"file": "02_JEWELRY_ON_MODEL.json", "workflow": "JEWELRY_ON_MODEL", "description": "Editorial and campaign jewelry on professional model"},
+    "03": {"file": "03_GEMSTONE_COLOR_CHANGE.json", "workflow": "GEMSTONE_COLOR_CHANGE", "description": "Surgical gemstone color and mineral type replacement"},
+    "04": {"file": "04_CUSTOMER_TRY_ON.json", "workflow": "CUSTOMER_TRY_ON", "description": "Virtual try-on using customer uploaded photo"},
+    "05": {"file": "05_BACKGROUND_REPLACEMENT.json", "workflow": "BACKGROUND_REPLACEMENT", "description": "Premium background and environment replacement"},
+    "06": {"file": "06_LUXURY_ENHANCEMENT.json", "workflow": "LUXURY_ENHANCEMENT", "description": "Professional retouching and luxury quality enhancement"},
+    "07": {"file": "07_CUSTOM_PROMPT.json", "workflow": "CUSTOM_PROMPT", "description": "Open creative brief — fully user-directed"}
+  }
+}

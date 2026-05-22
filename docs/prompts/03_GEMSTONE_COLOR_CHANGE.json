@@ -1,0 +1,72 @@
+{
+  "workflow": "GEMSTONE_COLOR_CHANGE",
+  "workflow_label": "Gemstone Color Change",
+  "description": "Precisely changes the color and mineral identity of one or more gemstones in a jewelry piece while leaving all metal, prongs, band geometry, and surrounding elements completely untouched. Produces physically accurate new gemstone colors with correct refractions, brilliance, and light behavior for the target mineral.",
+
+  "master_prompt": {
+    "system_role": "Act as a master gemologist-photographer and precision CGI retoucher who specializes in jewelry color variant production for luxury brands. You have deep knowledge of how different gemstones — diamonds, rubies, sapphires, emeralds, moissanites, amethysts, topazes, opals — physically interact with light: their refractive indices, dispersion rates, optical phenomena, and natural color saturation. Your task is a surgical precision operation: you will change ONLY the color and optical identity of the specified gemstone(s) in the image to match the target color and mineral type. Every other element in the image — the metal, prongs, background, lighting, image perspective — must remain pixel-perfect identical to the source. This is a professional color variant production task, not a full image regeneration.",
+
+    "camera_settings": "Preserve the exact camera perspective, focal length, depth-of-field, and framing of the source image. Do not change the zoom level, crop, or composition. If the source image uses macro depth-of-field, maintain that. The new gemstone must integrate seamlessly at the same perceived focal distance as the original stone.",
+
+    "environment": "Preserve the background, surface, and environmental elements of the source image exactly as they are. Do not alter the surface color, texture, or any reflective properties of the background. The only change introduced is within the gemstone itself — its color, internal structure, and light behavior.",
+
+    "lighting_and_physics": "The new target gemstone must respond physically accurately to the existing lighting in the source image. The light source positions, intensity, and direction are fixed — the gemstone must adapt its refractions, fire, and brilliance to those light conditions as if it were the real mineral being photographed in that exact setup. Target gemstone physical behaviors: DIAMOND — colorless or colored, extreme brilliance, white specular, spectral rainbow dispersion fire inside the stone, table facet reflects the softbox as a bright white point, pavilion facets produce rainbow flashes; RUBY — deep chromium-red saturation with a slight asterism-like glow in cabochon cuts, transparent with depth, red fire in facets; SAPPHIRE — royal blue to cornflower blue depth, slight violet in deep saturation, high brilliance with clean blue reflections in all facets; EMERALD — rich deep green with natural jardins (internal growth features giving depth), slightly lower brilliance than diamond, velvety green depths with bright green facet reflections; MOISSANITE — similar to diamond but with higher dispersion (more fire), slightly warmer colorless, more spectral rainbow fire than diamond; AMETHYST — medium to deep violet-purple, transparent, bright and faceted; TOPAZ — ranges from blue sky to champagne to pink, high brilliance with clean transparent depth; OPAL — play-of-color phenomenon, shifting spectral patches visible across the surface depending on viewing angle; TANZANITE — trichroic blue-violet-burgundy depending on angle, deep and luxurious.",
+
+    "preservation_lock": "SURGICAL PRECISION MANDATE — Only the gemstone(s) specified are to be modified. ALL other elements must remain absolutely identical to the source image: (1) Metal color, finish, and texture unchanged. (2) Prong shape, count, and positioning unchanged. (3) Band, shank, or chain unchanged. (4) Setting style (bezel, prong, pavé side stones) unchanged. (5) Background, surface, and ambient environment unchanged. (6) Image crop, perspective, and composition unchanged. (7) Any side or accent stones NOT specified for change must remain exactly as in the source. (8) The size and physical dimensions of the gemstone must remain the same — do not enlarge, shrink, or reshape the stone footprint.",
+
+    "negative_prompt": "Metal color change, prong reshaping, band warping, background alteration, perspective shift, crop change, brightness/contrast change to entire image, new shadows introduced, existing shadows removed, additional gemstones, removed gemstones, stone cut change, stone size change, gemstone physically outside its setting, prongs floating, setting redesigned, manufacturer markings changed, gemstone with impossible optical properties, color spilling onto metal, color contaminating background."
+  },
+
+  "child_prompts": {
+    "diamond_to_ruby": {
+      "target_mineral": "Ruby",
+      "target_color": "Deep chromium red",
+      "optical_properties": "Rich, saturated red (Munsell 5R 3/14) with high transparency and natural depth. The stone shows deep red body color with slightly lighter red fire in the brightest facets. No orange overtone — pure ruby red. At high magnification, natural-looking silk inclusions visible in the stone's depth (typical of natural ruby). The table facet reflects a warm reddish-white highlight from the key light. Inner pavilion facets show red-to-light-pink fire. The stone glows warmly from within under studio light.",
+      "integration_note": "Ensure the red color is contained entirely within the stone boundary — no red bleed onto prongs or metal."
+    },
+    "diamond_to_sapphire": {
+      "target_mineral": "Blue Sapphire",
+      "target_color": "Royal blue / Cornflower blue",
+      "optical_properties": "Deep saturated blue (approximately 280–300nm wavelength dominant hue) with violet undertone in the deepest shadow areas of the stone. High transparency and brilliant cut fire. The table facet reflects a cool blue-white highlight. Pavilion facets produce cool blue to sky-blue fire flashes. The stone has a deep, regal quality — the color appears to radiate from inside the stone's core. No green overtone, no gray haze — pure royal or cornflower blue.",
+      "integration_note": "Blue must be contained within stone facets — no hue spill onto surrounding metalwork."
+    },
+    "diamond_to_emerald": {
+      "target_mineral": "Emerald",
+      "target_color": "Deep Colombian emerald green",
+      "optical_properties": "Rich deep green (approximately 525–527nm dominant wavelength) with natural jardins (faint natural growth channels) giving the stone a complex inner texture visible under strong light. Lower brilliance than diamond — emeralds are less fiery. The table facet shows a rich mid-tone green. Pavilion facets show deep green to bright spring-green flashes. The stone has a velvety, warm glow — more absorbed light than diamond, giving it depth and gravitas. Slight bluish secondary hue in the deepest shadows.",
+      "integration_note": "Emerald's lower RI means slightly less spectacular fire than diamond — replicate the characteristic 'oily' emerald luster, not diamond's sharp fire."
+    },
+    "diamond_to_moissanite": {
+      "target_mineral": "Moissanite",
+      "target_color": "Near-colorless / D-E equivalent",
+      "optical_properties": "Essentially colorless (D-E grade equivalent) but with higher fire dispersion than diamond (0.104 vs diamond's 0.044). This means more spectral rainbow flashes visible inside the stone under normal lighting. The table facet reflects a bright white specular highlight. Pavilion facets produce more numerous, more intensely colored rainbow dispersions (blue-green-orange-red fire bands more prominent than in a diamond of similar size). A very slight warm tint may appear in the stone's core under certain lighting angles — this is characteristic of moissanite.",
+      "integration_note": "Key differentiation from diamond: more fire (dispersion), slightly more colorful rainbow effects. Stone still reads as a brilliant, near-colorless gemstone."
+    },
+    "diamond_to_blue_topaz": {
+      "target_mineral": "Swiss Blue Topaz",
+      "target_color": "Vivid Swiss blue",
+      "optical_properties": "Bright, saturated electric blue (lighter and more vivid than sapphire — closer to a swimming pool blue at 475–480nm). High transparency with very clean, open clarity — topaz has few inclusions. High brilliance with crisp, clean blue fire in all facets. The table facet reflects a bright sky-blue highlight. No secondary colors — pure, vivid, clean blue throughout. The stone looks bright and cheerful, not dark and royal like sapphire.",
+      "integration_note": "Swiss blue topaz reads lighter and more vibrant than sapphire. Ensure brightness is higher and saturation more vivid."
+    },
+    "diamond_to_amethyst": {
+      "target_mineral": "Amethyst",
+      "target_color": "Deep violet purple",
+      "optical_properties": "Medium to deep violet-purple (approximately 400–420nm dominant wavelength) with consistent saturation throughout. High transparency. Brilliance similar to other quartz-family stones — less fire than diamond but excellent clarity. The table facet shows a rich purple face. Pavilion facets produce purple-to-lavender fire. Slight reddish-violet secondary hue visible in the stone's core in certain lighting. The color should be regal and deep, not washed-out pale lilac.",
+      "integration_note": "Purple must not read as pink or blue — target medium-to-deep grape/violet tone. Avoid too-dark (near-opaque) versions."
+    },
+    "any_to_black_diamond": {
+      "target_mineral": "Black Diamond",
+      "target_color": "Opaque jet black",
+      "optical_properties": "Fully opaque, extremely dark surface — near-zero transparency. The black diamond's beauty comes from its surface gloss and metallic-like reflections, not internal transparency. Under studio light, the stone shows a brilliant, mirror-like top surface with high specular reflections from the table facet — resembling polished black glass or hematite. Pavilion facets are not visible due to opacity. The overall stone reads as a sophisticated, matte-to-gloss black gem with bright specular highlights only at the sharpest facet intersections.",
+      "integration_note": "Black diamond is about surface reflections, not internal fire. Specular highlights on table and facet ridges are the visual interest — not brilliance or dispersion."
+    },
+    "any_to_opal": {
+      "target_mineral": "Opal",
+      "target_color": "Play-of-color white opal",
+      "optical_properties": "White body color with vivid play-of-color phenomenon — patches of spectral color (red, orange, green, blue) shifting and moving across the stone surface as if lit internally. This play-of-color appears in irregular, organic patches that change which color is dominant depending on viewing angle. The background body color is milky white to cream. The color play patches are vivid and saturated — jewel-like chips of pure spectrum embedded in the stone's surface layer. This is a cabochon-cut opal — no facets, domed top.",
+      "integration_note": "Opal requires a fundamentally different gemstone shape (cabochon, not faceted) if the source stone is faceted — adapt accordingly. Play-of-color must look organic and varied, not uniform or digital."
+    }
+  },
+
+  "usage_notes": "This workflow requires the source jewelry product image as input. The AI should identify the gemstone to be changed, apply the target optical properties as described in the relevant child prompt, and ensure all other image elements remain unchanged. For best results, specify the exact target mineral in the user instruction field."
+}

@@ -1,0 +1,101 @@
+
+================================================================================
+7. API & TECHNOLOGY ARCHITECTURE
+================================================================================
+
+7.1 Core APIs
+--------------
+API / Service      | Provider     | Use Case                                  | Cost Model
+-------------------|--------------|-------------------------------------------|-----------
+Gemini 2.0 Flash   | Google       | Detail analysis, prompt decomposition      | Pay-per-token
+Stability AI SDXL  | Stability AI | img2img enhancement, background inpaint     | Pay-per-image
+Remove.bg          | Remove.bg    | Precision background removal                | Pay-per-image
+Replicate VTON     | Replicate    | Virtual try-on compositing                 | Pay-per-run
+Real-ESRGAN        | Replicate    | 4x image upscaling                         | Pay-per-run
+MediaPipe Pose     | Google       | Landmark detection (client-side)           | Free
+Stripe             | Stripe       | Credit wallet and subscriptions            | % of trans.
+WhatsApp Cloud API | Meta         | Share results to WhatsApp                  | Per message
+
+7.2 Tech Stack (Updated)
+-------------------------
+Frontend    : Next.js 14 (React), Tailwind CSS, Shadcn/UI, Lucide React
+Backend     : Node.js (Express.js), TypeScript
+Database    : PostgreSQL (Perfect relational DB for jewelry metadata)
+ORM         : Prisma
+Job Queue   : BullMQ + Redis (Handles async AI processing)
+File Storage: Hostinger Local Storage / S3-Compatible Storage
+Hosting     : Hostinger VPS (Ubuntu)
+Deployment  : Docker + Docker Compose
+
+7.3 Deployment Strategy — Hostinger
+------------------------------------
+- The application is containerized using Docker.
+- Deployment is on a Hostinger VPS (CyberPanel or plain Ubuntu).
+- Nginx acts as a reverse proxy with SSL via Let's Encrypt.
+- PostgreSQL and Redis run as Docker services.
+
+7.4 Mobile Optimization
+------------------------
+- Progressive Web App (PWA) features for mobile home screen installation.
+- Responsive design using Tailwind's mobile-first breakpoints.
+- Touch-friendly controls and optimized image loading.
+- High performance (Lighthouse score target > 90).
+
+
+================================================================================
+8. UI/UX DESIGN SPECIFICATION
+================================================================================
+
+8.1 Visual Identity
+-------------------
+- Palette: Luxury Dark (Obsidian Black, Gold, Cream).
+- Typography: Serif headlines (Editorial), Sans-serif body (Readable).
+- Aesthetic: High-end jewellery boutique.
+
+8.2 Key Screens
+----------------
+- Dashboard: Recent images grid, Quick actions, Credit balance.
+- Studio: Split canvas (Before/After), Structured selectors (Jewelry, Metal, etc.).
+- Try-On: Landmark-aware compositing interface.
+- Admin: Metrics, Usage analytics, API monitoring.
+
+
+================================================================================
+9. FUNCTIONAL & NON-FUNCTIONAL REQUIREMENTS
+================================================================================
+
+9.1 Functional Requirements
+---------------------------
+- F1: User must be able to upload jewelry images (up to 20MB).
+- F2: 1-Click Auto-Enhance for background removal and lighting fix.
+- F3: Structured selection of Jewelry parameters (Metal, Gemstone, etc.).
+- F4: Prompt-based editing with negative prompt safety.
+- F5: Virtual try-on with auto-landmark detection and manual adjustment.
+- F6: Credit-based payment system with Stripe.
+- F7: Shareable links and WhatsApp integration.
+
+9.2 Non-Functional Requirements
+-------------------------------
+- NF1: Security - JWT authentication and encrypted storage for API keys.
+- NF2: Performance - Processing time < 60s for most jobs.
+- NF3: Reliability - 99.9% uptime for core database and API.
+- NF4: Scalability - Queue system to handle peak loads.
+- NF5: Usability - Mobile-optimized interface with < 100ms interaction latency.
+
+
+================================================================================
+10. BUSINESS MODEL & PRICING
+================================================================================
+- Credit-based system: Enhance (5 credits), Try-On (10 credits).
+- Subscription tiers: Starter (Free), Pro (PKR 2,999/mo), Business (PKR 7,999/mo).
+
+
+================================================================================
+11. DEVELOPMENT PHASES
+================================================================================
+Phase 1: MVP - Core Enhancement & Structured Inputs (Node.js + PostgreSQL).
+Phase 2: Try-On - Necklace & Earring support + Canvas adjustments.
+Phase 3: Scale - Batch processing, Team access, Enterprise white-labeling.
+
+
+GemAI Studio — Confidential Product Document © 2026

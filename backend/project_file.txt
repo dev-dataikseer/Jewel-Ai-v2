@@ -1,0 +1,613 @@
+GEMAI STUDIO
+AI-Powered Jewellery Enhancement, Background Control, and Virtual Try-On Platform
+PROJECT.TXT / MASTER PRODUCT SPEC
+Version: 2.0
+Date: May 2026
+
+1. PROJECT SUMMARY
+
+GemAI Studio is a web application for jewellery retailers, photographers, and e-commerce teams to upload jewellery images, enhance them, clean backgrounds, generate studio-quality output, and perform virtual try-on on model photos.
+
+The product is optimized for both desktop and mobile web use. It follows a single-AI-provider strategy to reduce complexity, cost, and integration risk. The recommended AI model is Google Gemini 3 Pro Image (Nano Banana Pro) used as the only external AI API for image understanding and image editing. All other functionality is handled by the application itself using Node.js services, image processing libraries, and database-backed workflows.
+
+The platform is designed for Hostinger deployment.
+
+2. PRODUCT GOALS
+
+- Produce jewellery-ready images faster than manual editing.
+- Keep product identity unchanged while improving visual quality.
+- Support enhancement, background cleanup, prompt-based editing, and virtual try-on.
+- Work smoothly on mobile and desktop browsers.
+- Keep the stack simple, maintainable, and affordable.
+- Allow batch operations without exposing the user to complex workflows.
+
+3. BUSINESS OBJECTIVES
+
+- Reduce jewellery photo editing turnaround from days to seconds or minutes.
+- Help shops publish consistent catalog images across all SKUs.
+- Enable social-media-ready imagery without a Photoshop expert.
+- API key ,token etc things should be in settings tab use can add and see their creadits left.
+- Provide a professional, premium UI that matches the luxury jewellery market.
+
+4. TARGET USERS
+ALL: Have output option e.g ratio of the image things.
+Also have dropdown e.g put jewellery with hand, on neck, solo etc
+searchable dropdown for jewellery and model photos as well .
+and this is a mini already written prompts in the dropdown of prompts only.  dont show everything. e.g
+tis help to user just click and get results.
+    4.1 Jewellery Shop Owner
+    Needs quick enhancement and clean backgrounds without technical knowledge.
+
+    4.2 E-commerce Manager
+    Needs batch processing, consistency, gallery history, and reusable presets.
+
+    4.3 Photographer / Studio Operator
+    Needs fast retouching, export options, and quality control.
+
+    4.4 Sales / Marketing Staff
+    Needs quick product visuals for WhatsApp, Instagram, and promotions.
+
+5. CORE PRODUCT PRINCIPLES
+
+- Single-click where possible.
+- Preserve original jewellery design.
+- Avoid hallucinated stones, settings, engravings, or metal shapes.
+- Prefer clean, premium outputs over flashy effects.
+- Make mobile use simple and safe.
+- Keep the architecture minimal and production-friendly.
+
+6. FEATURE SCOPE
+
+6.1 Image Upload and Asset Management
+- Drag and drop upload
+- File picker upload
+- Multi-file upload
+- Batch upload
+- SKU / product name tagging
+- Image preview with zoom
+- Original and processed asset storage
+- Searchable history
+- Filter by date, SKU, type, status
+- Delete, rename, and reprocess assets
+
+
+6.2 Enhancement Studio
+- One-click enhance
+- Background cleanup
+- White background output
+- Transparent background output
+- Lighting correction
+- Contrast and sharpness correction
+- Gemstone clarity improvement
+- Metal polish enhancement
+- Dust and scratch cleanup
+- Shadow generation
+- Color correction
+- Before / after comparison slider
+- Re-run with different settings
+
+6.3 Prompt-Based Editing
+- Free-text edit prompt
+- Prompt suggestions
+- Editable intensity slider
+- Style presets
+- Negative prompt protection to preserve design
+- Edit history
+- Repeat last edit
+- Safe edit warnings when the request is risky
+
+6.4 Virtual Try-On
+- Upload model photo
+- Upload jewellery photo
+- Jewellery type detection
+- Necklace try-on
+- Ring try-on
+- Earring try-on
+- Bracelet try-on
+- Manual repositioning
+- Scale, rotate, and align controls
+- Shadow and blending controls
+- Before / after toggle
+
+6.5 Export and Sharing
+- Download PNG, JPG, or WEBP
+- Batch ZIP download
+- Shareable link
+- WhatsApp sharing
+- Instagram-ready sizes
+- Watermark on/off
+- Original resolution export
+
+6.6 Account and Admin
+-No logins
+- Audit log
+- System health page for admins
+
+7. AI STRATEGY
+
+Single AI API Approach:
+Use only one external AI API for all image intelligence and editing: Google Gemini 3 Pro Image (Nano Banana Pro).
+
+Use cases for the AI model:
+- Understand jewellery type and structure
+- Analyze image quality issues
+- Support prompt-based image editing
+- Support guided image-to-image enhancement
+- Assist with safe transformation instructions
+- Help with virtual try-on guidance and composition suggestions
+
+Non-AI image tasks remain local:
+- Cropping
+- Resizing
+- Compression
+- Thumbnail generation
+- Mask handling
+- Alpha compositing
+- Shadow rendering
+- Watermark stamping
+- EXIF stripping
+- File validation
+
+Important rule:
+The application must never use text-to-image generation for product transformation. All edits should be image-preserving and constrained to the uploaded source image.
+
+8. RECOMMENDED TECH STACK
+
+8.1 Frontend
+- Next.js 14 or 15
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Framer Motion
+- Lucide React icons
+- Zustand or Redux Toolkit for state management
+- TanStack Query for server state
+- Fabric.js or Konva.js for canvas editing
+- React Dropzone for uploads
+- React Hook Form + Zod for forms
+- Recharts for usage analytics
+- next/image for optimized rendering
+
+8.2 Backend
+- Node.js
+- Express.js or NestJS
+- TypeScript
+- REST API
+- Multer / Busboy for uploads
+- Sharp for image transforms
+- BullMQ for background jobs
+- Redis for queue and cache
+- Prisma ORM
+- Central validation and rate limiting
+- Structured logging
+- Webhook handlers for billing and async job callbacks
+
+8.3 Database
+Recommended database: PostgreSQL
+
+Reason:
+- Best fit for structured app data
+- Strong relational integrity for users, jobs, assets, plans, credits, and roles
+- JSONB support for flexible metadata
+- Reliable indexing and search
+- Good fit for analytics and audit logs
+- Easy to run on Hostinger VPS or a managed PostgreSQL instance
+
+8.4 File Storage
+- Hostinger object storage if available, or VPS-mounted storage with S3-compatible configuration
+- Store originals, masks, previews, and final outputs separately
+- Use signed URLs for private downloads
+
+8.5 Infrastructure
+- Hostinger VPS for backend and queue workers
+- Hostinger hosting or VPS for frontend
+- PostgreSQL on Hostinger VPS / managed DB
+- Redis on Hostinger VPS
+- Nginx reverse proxy
+- PM2 or Docker Compose for process management
+- SSL with Let's Encrypt
+- Backup automation
+
+8.6 Monitoring and Observability
+- Sentry for error tracking
+- OpenTelemetry or simple app logs
+- Uptime monitoring
+- Database backup checks
+- Job failure alerting
+
+9. SYSTEM ARCHITECTURE
+
+Client Browser
+-> Next.js Frontend
+-> Node.js API
+-> PostgreSQL
+-> Redis Queue
+-> Local Image Worker
+-> Gemini 3 Pro Image API
+-> Storage
+-> Download / Share
+
+Processing pattern:
+1. User uploads file
+2. Frontend validates file and sends to backend
+3. Backend stores original file and metadata
+4. Backend creates a job record
+5. Queue worker processes the job
+6. Worker calls Gemini API when AI analysis or editing is needed
+7. Worker performs local image operations
+8. Result is saved to storage
+9. Backend updates job status
+10. Frontend receives real-time updates and shows the output
+
+10. FUNCTIONAL REQUIREMENTS
+
+10.1 No Authentication
+
+10.2 Dashboard
+- Show recent jobs
+- Show credit balance
+- Show job success/failure counts
+- Show quick actions
+- Show recent downloads and shares
+
+10.3 Upload
+- Accept JPG, PNG, WEBP
+- Reject invalid or unsupported files
+- Limit file size to configurable max
+- Show instant preview
+- Support multiple upload selection
+- Show progress and status
+
+10.4 Enhancement Workflow
+- User can run one-click enhancement
+- User can choose background style
+- User can choose output format
+- User can apply preset styles
+- User can compare before and after
+- User can download final result
+
+10.5 Prompt Editing Workflow
+- User can describe desired change in plain language
+- System must preserve jewellery identity
+- System should block or warn on risky requests
+- User can adjust intensity
+- User can regenerate from history
+
+10.6 Virtual Try-On
+- User uploads model photo and jewellery image
+- System identifies jewellery category
+- System aligns item onto body region
+- User can manually adjust placement
+- User can export final composite
+
+10.7 History
+- User can search past jobs
+- User can filter by type and date
+- User can reopen and reprocess a job
+- User can delete assets if permitted
+
+11. NON-FUNCTIONAL REQUIREMENTS
+
+11.1 Performance
+- Page load should be fast on standard mobile networks
+- Upload progress should feel responsive
+- Background jobs should not block the UI
+- The app should support concurrent users without major slowdown
+
+11.2 Availability
+- Target high uptime on Hostinger VPS
+- Use health checks and automatic restart
+- Use retries for job failures
+
+11.3 Security
+- Enforce HTTPS
+- Store secrets in environment variables
+- Hash passwords securely
+- Use role-based access control
+- Validate all uploads
+- Limit request sizes
+- Protect download URLs
+- Sanitize filenames and metadata
+- Log security events
+
+11.4 Reliability
+- Job queue should support retry and dead-letter handling
+- Failed jobs should be recoverable
+- Save job states in database
+
+11.5 Scalability
+- Scale horizontally by adding more workers
+- Separate API server from worker process
+- Use PostgreSQL indexes and Redis caching
+
+11.6 Usability
+- Mobile and desktop friendly
+- Clear CTA hierarchy
+- Simple language
+- Minimal training required
+- Accessible controls and readable contrast
+
+11.7 Accessibility
+- Keyboard navigable UI
+- ARIA labels on key controls
+- Sufficient color contrast
+- Responsive layouts
+- Touch-friendly buttons on mobile
+
+11.8 Maintainability
+- Modular codebase
+- Clear service boundaries
+- Documented environment variables
+- Reusable UI components
+- Centralized configuration
+
+11.9 Compliance and Privacy
+- Users must own or have rights to uploaded images
+- Uploaded files should be handled confidentially
+- Support image deletion request
+- Strip unnecessary metadata from exports
+- Keep audit logs for administrative actions
+
+12. UI / UX SPECIFICATION
+
+12.1 Visual Style
+- Premium luxury theme
+- Dark base with gold accents
+- Clean spacing
+- Strong typography hierarchy
+- Elegant cards and soft shadows
+
+12.2 Suggested Palette
+- Background: Obsidian Black
+- Primary Accent: Gold
+- Surface: Deep charcoal
+- Text: Off-white
+- Success: Green
+- Warning: Amber
+- Error: Red
+
+12.3 Typography
+- Headings: elegant serif or high-contrast display font
+- Body: modern sans-serif
+- Buttons: medium weight, highly legible
+
+12.4 Core Screens
+- Landing page
+- Login and signup
+- Dashboard
+- Upload and enhancement studio
+- Prompt editing studio
+- Try-on studio
+- History gallery
+- Billing / credits
+- Settings
+- Admin panel
+
+12.5 Mobile UX
+- Single-column layouts
+- Sticky action bar
+- Bottom sheet controls where needed
+- Large upload button
+- Simple preview and compare controls
+- Avoid dense tables on small screens
+
+12.6 Desktop UX
+- Two-panel editor layout
+- Side-by-side before / after
+- Larger canvas workspace
+- Filters and history side panel
+- Batch processing table
+
+13. DATA MODEL
+
+Core entities:
+- Users
+- Shops
+- Roles
+- Assets
+- Jobs
+- JobSteps
+- Presets
+- CreditLedger
+- Plans
+- Payments
+- ShareLinks
+- AuditLogs
+- Settings
+
+Important fields:
+- user_id
+- shop_id
+- asset_id
+- job_type
+- job_status
+- input_file_url
+- output_file_url
+- prompt_text
+- preset_id
+- credits_used
+- created_at
+- updated_at
+
+14. API DESIGN
+
+Suggested REST endpoints:
+
+Auth
+- POST /api/auth/register
+- POST /api/auth/login
+- POST /api/auth/logout
+- POST /api/auth/forgot-password
+- POST /api/auth/reset-password
+
+Assets
+- POST /api/assets/upload
+- GET /api/assets
+- GET /api/assets/:id
+- DELETE /api/assets/:id
+
+Jobs
+- POST /api/jobs/enhance
+- POST /api/jobs/edit
+- POST /api/jobs/try-on
+- GET /api/jobs
+- GET /api/jobs/:id
+- POST /api/jobs/:id/retry
+
+Presets
+- GET /api/presets
+- POST /api/presets
+- PUT /api/presets/:id
+- DELETE /api/presets/:id
+
+Billing
+- GET /api/billing/credits
+- POST /api/billing/checkout
+- POST /api/billing/webhook
+- GET /api/billing/invoices
+
+Sharing
+- POST /api/share-links
+- GET /s/:token
+
+Admin
+- GET /api/admin/users
+- GET /api/admin/jobs
+- GET /api/admin/metrics
+
+15. JOB FLOW
+
+Enhance Job
+1. Validate upload
+2. Save original file
+3. Create job
+4. Queue worker
+5. Analyze image
+6. Apply enhancement
+7. Apply background cleanup
+8. Apply shadow / polish
+9. Save output
+10. Return download link
+
+Prompt Edit Job
+1. Validate upload
+2. Save source image
+3. Create job
+4. Interpret edit request
+5. Apply constrained image edit
+6. Preserve product identity
+7. Save final output
+
+Try-On Job
+1. Validate model photo and jewellery image
+2. Detect body region
+3. Align item
+4. Composite and blend
+5. Save composite
+6. Return final preview
+
+16. CREDIT / BILLING MODEL
+
+Suggested credit logic:
+- Enhancement: 5 credits
+- Background cleanup only: 2 credits
+- Prompt edit: 3 credits
+- Virtual try-on: 10 credits
+- Upscale: 5 credits
+
+Plans:
+- Starter
+- Pro
+- Business
+- Enterprise
+
+Billing stack:
+- Stripe checkout
+- Stripe webhooks
+- Credit ledger in PostgreSQL
+
+17. HOSTINGER DEPLOYMENT PLAN
+
+Recommended deployment on Hostinger:
+- Frontend: Next.js build on Hostinger VPS or supported deployment environment
+- Backend: Node.js API on Hostinger VPS
+- Worker: separate Node.js process on same VPS
+- Database: PostgreSQL on Hostinger VPS or managed database
+- Redis: on Hostinger VPS
+- Reverse proxy: Nginx
+- Process manager: Docker Compose or PM2
+- SSL: Let's Encrypt
+- Backups: automated daily backups
+- Logs: server and app logs retained with rotation
+
+18. FILE AND QUALITY RULES
+
+- Maximum upload size: configurable, recommended 20 MB per file
+- Accepted formats: JPG, PNG, WEBP
+- Minimum resolution: 800 px shortest side
+- Strip EXIF from public outputs
+- Generate web thumbnails
+- Compress preview images
+- Keep original files private
+
+19. RISKS AND MITIGATIONS
+
+- Risk: AI changes jewellery shape
+  Mitigation: constrained image editing only, no text-to-image, strong validation, human review option
+
+- Risk: Try-on alignment looks fake
+  Mitigation: manual repositioning, blend controls, clear confidence warnings
+
+- Risk: Upload errors on mobile
+  Mitigation: lightweight responsive UI, resumable upload support if needed
+
+- Risk: Hostinger resource limits
+  Mitigation: separate worker process, optimize image size, cache aggressively, scale to VPS plan as usage grows
+
+20. MVP SCOPE
+
+Phase 1 MVP
+- Upload
+- Enhancement studio
+- Background cleanup
+- Prompt edit
+- History gallery
+- Credit system
+- Basic admin
+- Hostinger deployment
+
+Phase 2
+- Virtual try-on
+- Batch jobs
+- Better presets
+- Share links
+- WhatsApp sharing
+
+Phase 3
+- Team access
+- Advanced analytics
+- White-label options
+- Enterprise controls
+
+21. SUCCESS METRICS
+
+- Time to first output under 1 minute
+- Enhancement success rate above 95 percent
+- User retention after first week
+- Batch completion reliability
+- Mobile task completion rate
+- Support ticket reduction versus manual editing workflows
+
+22. FINAL TECH DECISION
+
+Recommended final stack:
+- Frontend: Next.js + React + TypeScript + Tailwind + shadcn/ui
+- Backend: Node.js + Express + TypeScript
+- Database: PostgreSQL
+- Queue: Redis + BullMQ
+- Storage: Hostinger-compatible object/file storage
+- AI: Google Gemini 3 Pro Image (Nano Banana Pro) as the single external AI API
+- Deployment: Hostinger VPS with Nginx, SSL, PM2/Docker, and automated backups
+
+END OF FILE
